@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta content='width=device-width, initial-scale=1.0' name='viewport'>
+    <title>Moving past IE7 with BrowserBlast jQuery plugin — Mark Goodyear &mdash; Front-end developer and designer</title>
+    <meta content="I'm Mark Goodyear, a front-end developer and designer." name='description'>
+    <link href='http://markgoodyear.com/2012/12/moving-past-ie7-with-browserblast-plugin/' rel='canonical'>
+    <meta content='article' property='og:type'>
+    <meta content='Moving past IE7 with BrowserBlast jQuery plugin â€” Mark Goodyear â€” Front-end developer and designer' property='og:title'>
+    <meta content='http://markgoodyear.com/2012/12/moving-past-ie7-with-browserblast-plugin/' property='og:url'>
+    <meta content="I'm Mark Goodyear, a front-end developer and designer." name='og:description'>
+    <meta name='twitter:card' value='summary'>
+    <meta name='twitter:creator' value='@markgdyr'>
+    <meta name='twitter:title' value='Moving past IE7 with BrowserBlast jQuery plugin &amp;mdash; Mark Goodyear &amp;mdash; Front&amp;dash;end developer and designer'>
+    <meta name='twitter:description' value="I'm Mark Goodyear, a front-end developer and designer.">
+    <script>
+      !function () {
+        function supportsSVG() { return !!document.createElementNS && !! document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect }
+          if (supportsSVG()) document.documentElement.className += ' svg'
+          else document.documentElement.className += ' no-svg'
+      }()
+    </script>
+    <link href="../../../css/site.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src='//use.typekit.net/yfa5mlg.js'></script>
+    <script>
+      try{Typekit.load();}catch(e){}
+    </script>
+    <!--[if (gte IE 6)&(lte IE 8)]>
+      <script src="../../../js/selectivizr.js" type="text/javascript"></script>
+    <![endif]-->
+    <!--[if lte IE 9]>
+      <script src="../../../js/html5shiv.js" type="text/javascript"></script>
+    <![endif]-->
+  </head>
+  <body class='2012 2012_12 2012_12_moving-past-ie7-with-browserblast-plugin 2012_12_moving-past-ie7-with-browserblast-plugin_index'>
+    <header class='page-head'>
+      <div class='container'>
+        <div class='logo'>
+          <a href="/"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />
+          </a>
+        </div>
+        <nav class='page-nav'>
+          <ul class='nav-list'>
+            <li>
+              <a href="/blog">Blog</a>
+            </li>
+            <li>
+              <a href="/contact">Contact</a>
+            </li>
+          </ul>
+        </nav>
+        <div class='twitter-follow'>
+          <a href="https://twitter.com/markgdyr" class="twitter-follow-button" data-show-count="false" data-size="">Follow @markgdyr</a>
+          <script>
+            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+          </script>
+        </div>
+      </div>
+    </header>
+    <div class='container page-wrap'>
+      <article class='post-item'>
+        <header class='post-head'>
+          <!-- -if current_page.data.header == "none" -->
+          <h1 class='post-title'>Moving past IE7 with BrowserBlast jQuery plugin</h1>
+          <span class='post-date'>Dec 10, 2012</span>
+        </header>
+        <div class='post-content'>
+          <p class="lead">IE has always caused headaches for every developer, and as the web is moving forward with the likes of CSS3 and HTML5, it’s time to fully drop support for IE7.</p>
+          
+          <ul class="post-actions">
+            <li><a href="http://markgoodyear.com/labs/browserblast">Demo</a></li>
+            <li><a href="https://github.com/markgoodyear/BrowserBlast/archive/master.zip">Download</a></li>
+            <li><a href="https://github.com/markgoodyear/browserblast">Git</a></li>
+          </ul>
+          
+          <p>We all know a site won’t look the same in every browser, but to take advantage of features such as the great <code>box-sizing: border-box;</code> and CSS3, we must keep advancing. IE8 isn’t perfect, but one of the best features is that it supports the <code>border-box</code> model without any polyfills.</p>
+          
+          <h2>What is border-box?</h2>
+          
+          <p>If you haven’t heard about it, the <code>border-box</code> model solves a lot of issues with the default box model—especially in responsive design. Another thing it’s great for is when using a grid system. It allows us to write less markup if we need to add any inner borders or padding to a grid box. Without box-sizing, a perhaps slightly over exaggerated example would be:</p>
+          <pre class="highlight css"><span class="nc">.grid_6</span> <span class="p">{</span> <span class="nl">width</span><span class="p">:</span> <span class="m">460px</span><span class="p">;</span> <span class="p">}</span>&#x000A;<span class="nc">.inner-border</span> <span class="p">{</span> <span class="nl">border</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="m">#000</span><span class="p">;</span> <span class="p">}</span>&#x000A;<span class="nc">.inner-padding</span> <span class="p">{</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span> <span class="p">}</span></pre><pre class="highlight html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;box grid_6&quot;</span><span class="nt">&gt;</span>&#x000A;    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;inner-border&quot;</span><span class="nt">&gt;</span>&#x000A;        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;inner-padding&quot;</span><span class="nt">&gt;</span>&#x000A;            <span class="c">&lt;!-- Content here --&gt;</span>&#x000A;        <span class="nt">&lt;/div&gt;</span>&#x000A;    <span class="nt">&lt;/div&gt;</span>&#x000A;<span class="nt">&lt;/div&gt;</span></pre>
+          <p>Without <code>border-box</code>, if we applied the padding and border on <code>.box</code> the width would grow to 502px—breaking the layout. This is because the total width equals the element width padding borders. In this case; 460px (element width) 40px (left and right padding) 2px (left and right border). This is why the extra divs are needed to keep <code>.box</code> at 460px wide. However with <code>border-box</code> we can do this:</p>
+          <pre class="highlight css"><span class="nc">.grid_6</span> <span class="p">{</span> <span class="nl">width</span><span class="p">:</span> <span class="m">460px</span><span class="p">;</span> <span class="p">}</span>&#x000A;<span class="nc">.box</span> <span class="p">{</span> <span class="nl">border</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="m">#000</span><span class="p">;</span> <span class="nl">padding</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span> <span class="p">}</span></pre><pre class="highlight html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;box grid_6&quot;</span><span class="nt">&gt;</span>&#x000A;    <span class="c">&lt;!-- Content here --&gt;</span>&#x000A;<span class="nt">&lt;/div&gt;</span></pre>
+          <p>As the <code>border-box</code> box model’s total width includes the padding and borders, this keeps <code>.box</code> at the width we want when padding and borders are applied. Basically, padding and borders no longer affect the overall width. Awesome. I can see <code>border-box</code> being included in future CSS resets as it makes things a lot simpler.</p>
+          
+          <h2>Why IE8</h2>
+          
+          <p>Supporting a browser should be about the user being able to navigate and use the site, not about seeing all the fancy CSS3 features. Sure, whilst it’d be great to see those rounded corners and shadows, it doesn’t affect the overall usability. Utilising <code>border-box</code> can however affect usability in IE7 as columns and alike are likely to fall apart without providing any polyfills. This is why we should advance to a browser that can natively supports <code>border-box</code>.</p>
+          
+          <p>On a recent project I found myself needing to show a message to IE7 and below users, as using <code>border-box</code> did indeed brake the layout. Enter BrowserBlast!</p>
+          
+          <h2>BrowserBlast</h2>
+          
+          <p>BrowserBlast is a lightweight and fully customisable jQuery plugin to display a warning for IE7 users and below to let them know their browser isn’t supported anymore. This should hopefully urge them to update to a modern browser. The banner is persistent so it’s not just dismissed and forgotten by the user. We want them to be aware and update.</p>
+          
+          <p>In some cases, such as client requests, we may need to maintain IE7 support. Not to worry! BrowserBlast includes the option to select which IE version you support to display the warning to lesser browsers. This also means when the time comes for dropping IE8 support we can still utilize this plugin.</p>
+          
+          <p>To make theming the banner simple to fit in, or stand out if you wish, with your site, I created basic styling options to avoid requiring implementing any additional CSS. If you want to further customisation using your own CSS, simply set <code>customCSS</code> to <code>true</code>. This will ignore any styling in the options so you have full control of how it looks—simply target the <code>#unsupported</code> selector in your CSS. To easily check the styling without needing to disable or keep checking IE, BrowserBlast includes a development mode to make the banner display on all browsers. Below is an example of usage with all the options:</p>
+          <pre class="highlight javascript"><span class="nx">$</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>&#x000A;    <span class="nx">$</span><span class="p">.</span><span class="nx">browserBlast</span><span class="p">({</span>&#x000A;        <span class="na">devMode</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// Toggle dev mode&#x000A;</span>        <span class="na">supportedIE</span><span class="p">:</span> <span class="s2">&quot;8&quot;</span><span class="p">,</span> <span class="c1">// Supported IE version&#x000A;</span>        <span class="na">customCSS</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// Use custom CSS&#x000A;</span>        <span class="na">fixed</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// Toggle between a fixed and non-fixed banner&#x000A;</span>        <span class="na">linkColor</span><span class="p">:</span> <span class="s1">&#39;#56a119&#39;</span><span class="p">,</span> <span class="c1">// Set link color&#x000A;</span>        <span class="na">linkHover</span><span class="p">:</span> <span class="s1">&#39;#333&#39;</span><span class="p">,</span> <span class="c1">// Set link hover color&#x000A;</span>        <span class="na">linkUnderline</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// Toggle link underline&#x000A;</span>        <span class="na">bannerHeight</span><span class="p">:</span> <span class="s1">&#39;40&#39;</span><span class="p">,</span> <span class="c1">// Height of banner in px&#x000A;</span>        <span class="na">background</span><span class="p">:</span> <span class="s1">&#39;#FAF4AF&#39;</span><span class="p">,</span> <span class="c1">// Background color of banner&#x000A;</span>        <span class="na">textColor</span><span class="p">:</span> <span class="s1">&#39;#333&#39;</span><span class="p">,</span> <span class="c1">// Text color&#x000A;</span>        <span class="na">fontSize</span><span class="p">:</span> <span class="s1">&#39;12px&#39;</span><span class="p">,</span> <span class="c1">// Font size&#x000A;</span>        <span class="na">fontFamily</span><span class="p">:</span> <span class="s1">&#39;sans-serif&#39;</span><span class="p">,</span> <span class="c1">// Font family&#x000A;</span>        <span class="na">borderSize</span><span class="p">:</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="c1">// Border size in px&#x000A;</span>        <span class="na">borderStyle</span><span class="p">:</span> <span class="s1">&#39;solid&#39;</span><span class="p">,</span> <span class="c1">// Border style&#x000A;</span>        <span class="na">borderColor</span><span class="p">:</span> <span class="s1">&#39;#D4C790&#39;</span><span class="p">,</span> <span class="c1">// Border color&#x000A;</span>        <span class="na">warningID</span><span class="p">:</span> <span class="s1">&#39;unsupported&#39;</span><span class="p">,</span> <span class="c1">// Selector ID of the banner &#x000A;</span>        <span class="na">message</span><span class="p">:</span> <span class="s2">&quot;Hey! Your browser is unsupported. Please upgrade for the best experience.&quot;</span> <span class="c1">// Set your message, allows HTML&#x000A;</span>    <span class="p">});</span>&#x000A;<span class="p">});</span></pre>
+          <h2>Summary</h2>
+          
+          <p>As developers we can help strip the last usage of IE7 as much as possible using BrowserBlast, leaving us happy, headache free and to not worry so much about the remaining small percentage of people who are using it.</p>
+          
+          <ul class="post-actions">
+            <li><a href="http://markgoodyear.com/labs/browserblast">Demo</a></li>
+            <li><a href="https://github.com/markgoodyear/BrowserBlast/archive/master.zip">Download</a></li>
+            <li><a href="https://github.com/markgoodyear/browserblast">Git</a></li>
+          </ul>
+          <div id="carbonads-container">
+              <div class="close-ad">
+                  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RkFDQjc5RDEyRDBEMTFFMjgxQ0FFRTQzNkYyQTRBOUUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RkFDQjc5RDIyRDBEMTFFMjgxQ0FFRTQzNkYyQTRBOUUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpGQUNCNzlDRjJEMEQxMUUyODFDQUVFNDM2RjJBNEE5RSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpGQUNCNzlEMDJEMEQxMUUyODFDQUVFNDM2RjJBNEE5RSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pq1FxHMAAAEISURBVHjaYjE3N1dnZGRsAOKSY8eOPWUAAgsLCxkgvweI65jl5eXnc3FxWevr60f8/fv3cFJS0h8mJqYZnJycNnp6eiGM9vb2wsbGxicfPXrExs/P//fZs2fv/v//LwnU8KW6ulqZ+cGDB99v37594M+fP6GfP39m5uDg4FZTU/tXXl4uC9RwhAlk56ZNm94+BQJmZmZGPj6+f0AJZqB1N4FSccxAhwkDJWawsrLqycjI/BESEmJ59erVnzt37rB8//59IwtQYgHQkSYGBgafCwoKlP/9+/dkzpw5TEAFjL9+/VrDBFRQbGRk9CU7O1uJm5v7MC8vr4mAgICPkpLSj/T0dHmAAAMAneNkSa07wlAAAAAASUVORK5CYII=" alt="Close Ad">
+              </div>
+              <div class="carbonad">
+                  <div id="azcarbon"></div>
+                  <script type="text/javascript">
+                      var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = "http://engine.carbonads.com/z/34234/azcarbon_2_1_0_VERT"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);
+                  </script>
+              </div>
+          </div>
+        </div>
+        <div class='thoughts'>Like this post?
+        <a class='brand-twitter' href='http://twitter.com/?status=Moving past IE7 with BrowserBlast jQuery plugin: http://markgoodyear.com/2012/12/moving-past-ie7-with-browserblast-plugin/ by @markgdyr' target='_blank'>Tweet it!</a></div>
+        <div class="comments">
+        	<div id="disqus_thread"></div>
+        </div>
+        
+        <script>
+        	var disqus_url = 'http://markgoodyear.com/2012/12/moving-past-ie7-with-browserblast-plugin/';
+        	var disqus_title = 'Moving past IE7 with BrowserBlast jQuery plugin';
+        	var disqus_shortname = 'markgoodyear';
+        	// (function() {
+        	// 	var dsq = document.createElement('script');
+        	// 	dsq.async = dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        	// 	document.getElementsByTagName('head')[0].appendChild(dsq);
+        	// })();
+        	(function() {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+      </article>
+    </div>
+    <footer class='page-foot'>
+      <div class='container'>
+        <p>&copy; 2013 <a href="http://twitter.com/markgdyr" target="_blank">Mark Goodyear</a>. Built with <a href="http://middlemanapp.com" target="_blank">Middleman</a> and hosted on <a href="https://github.com/markgoodyear/markgoodyear.github.io" target="_blank">GitHub</a>.</p>
+        <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+        <script>
+          window.jQuery || document.write('<script src="/js/libs/jquery-1.9.1.min.js"><\/script>')
+        </script>
+        <script src="../../../js/all.js" type="text/javascript"></script>
+      </div>
+    </footer>
+    <script>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-17303121-4']);
+      _gaq.push(['_setDomainName', 'markgoodyear.com']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
+

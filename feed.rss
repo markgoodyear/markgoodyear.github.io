@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Mark Goodyear</title>
+  <subtitle>I'm Mark Goodyear, a front-end developer and designer.</subtitle>
+  <id>http://markgoodyear.com</id>
+  <link href="http://markgoodyear.com"/>
+  <link href="http://markgoodyear.com/feed.rss" rel="self"/>
+  <updated>2013-07-09T00:00:00Z</updated>
+  <author>
+    <name>Mark Goodyear</name>
+  </author>
+  <entry>
+    <title>Quick tip: Display page ID&amp;#39;s in the WordPress admin area</title>
+    <link rel="alternate" href="http://markgoodyear.com/2013/07/display-page-id-wordpress-admin-area/"/>
+    <id>http://markgoodyear.com/2013/07/display-page-id-wordpress-admin-area/</id>
+    <published>2013-07-09T00:00:00Z</published>
+    <updated>2013-07-27T23:35:02+01:00</updated>
+    <author>
+      <name>Mark Goodyear</name>
+    </author>
+    <summary type="html">&lt;p class="lead"&gt;In a WordPress site with many pages, it can become tedious to try find the ID of a page. With this simple script, the page ID is displayed right next to each page. No plugins needed!&lt;/p&gt;
+
+&lt;p&gt;</summary>
+    <content type="html">&lt;p class="lead"&gt;In a WordPress site with many pages, it can become tedious to try find the ID of a page. With this simple script, the page ID is displayed right next to each page. No plugins needed!&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;To display the page ID next to the page title, simply add this snippet to your themes &lt;code&gt;functions.php&lt;/code&gt; file:&lt;/p&gt;
+&lt;pre class="highlight php"&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+
+&lt;span class="c1"&gt;// Set columns to be used in the Pages section
+&lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;custom_set_pages_columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$columns&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="k"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;cb&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;lt;input type=&amp;quot;checkbox&amp;quot; /&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;page_id&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ID&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;title&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Title&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;author&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Author&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;date&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Date&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+  &lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="c1"&gt;// Add the ID to the page ID column
+&lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;custom_set_pages_columns_page_id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="nv"&gt;$column&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;$post_id&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$column&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;page_id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+    &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$post_id&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="c1"&gt;// Add custom styles to the page ID column
+&lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;custom_admin_styling&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;lt;style type=&amp;quot;text/css&amp;quot;&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;th#page_id{width:60px;}&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;&amp;lt;/style&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="c1"&gt;// Add filters and actions
+&lt;/span&gt;&lt;span class="nx"&gt;add_filter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;manage_edit-page_columns&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;custom_set_pages_columns&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="nx"&gt;add_action&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;manage_pages_custom_column&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;custom_set_pages_columns_page_id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="nx"&gt;add_action&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;admin_head&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;custom_admin_styling&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Your Pages admin section should now look something like this:
+&lt;span class="post-img"&gt;&lt;img alt="WordPress Page ID" src="../img/posts/wordpress-page-id.png" /&gt;&lt;/span&gt;
+Now you can easily check the ID of any page. If anyone has any other (or better) methods, please let me know via the comments below or send me a &lt;a href="http://twitter.com/markgdyr"&gt;Tweet&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Static Awesomeness</title>
+    <link rel="alternate" href="http://markgoodyear.com/2013/05/static-awesomeness/"/>
+    <id>http://markgoodyear.com/2013/05/static-awesomeness/</id>
+    <published>2013-05-27T00:00:00Z</published>
+    <updated>2013-06-02T21:39:08+01:00</updated>
+    <author>
+      <name>Mark Goodyear</name>
+    </author>
+    <summary type="html">&lt;p class="lead"&gt;Remember the days of no databases and just pure HTML files? They had many advantages, however managing content and templates isn&amp;rsquo;t ideal. Enter static site generators.&lt;/p&gt;
+
+&lt;p&gt;</summary>
+    <content type="html">&lt;p class="lead"&gt;Remember the days of no databases and just pure HTML files? They had many advantages, however managing content and templates isn&amp;rsquo;t ideal. Enter static site generators.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Recently, I was all set for a re-design in WordPress when I came across static site generator, Jekyll, which GitHub uses to generate its static pages for repositories. Because it uses no databases, &lt;em&gt;everything&lt;/em&gt; can be stored in version control. Awesome.&lt;/p&gt;
+
+&lt;p&gt;Jekyll is primarily for blogging, however I wanted the ability to expand in the future should I feel the need to&amp;mdash;perhaps by adding on a portfolio section or any other dynamic content types. I then stumbled across &lt;a href="http//middlemanapp.com"&gt;Middleman&lt;/a&gt;, which is like a suped up Jekyll. &lt;/p&gt;
+
+&lt;h2&gt;Who&amp;#39;s the Middleman?&lt;/h2&gt;
+
+&lt;p&gt;Middleman is a static site site generator which includes built-in features such as Sass, Haml, CoffeeScript, Markdown, LiveReload and many more that work straight out of the box with little or no configuration needed. With the ability to create multiple blogs, this is perfect to use for a portfolio section. It&amp;#39;s also extensible with many &lt;a href="http://directory.middlemanapp.com/#/extensions/all"&gt;useful extensions&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Middleman is a little more involved to get set up, requiring use of Terminal and some basic Ruby knowledge. Knowing this, and armed without any Ruby knowledge, I managed to get set up pretty quick and found it relatively painless&amp;mdash;so don&amp;#39;t let it put you off. There is a great &lt;a href="http://middlemanapp.com/getting-started/"&gt;walkthrough&lt;/a&gt; on the Middleman site, which explains how to install and set-up a new project.&lt;/p&gt;
+
+&lt;h3&gt;How does it work?&lt;/h3&gt;
+
+&lt;p&gt;It&amp;#39;s simple. My site has two folders: &lt;code&gt;source&lt;/code&gt; and &lt;code&gt;build&lt;/code&gt;. All my templates/Sass files are in the &lt;code&gt;source&lt;/code&gt; folder, which are then compiled into flat HTML and CSS files in the &lt;code&gt;build&lt;/code&gt; folder when I&amp;#39;m ready to deploy. I then deploy the &lt;code&gt;build&lt;/code&gt; folder to my server and that&amp;#39;s it. No database synching to worry about.&lt;/p&gt;
+
+&lt;h2&gt;Why Static?&lt;/h2&gt;
+
+&lt;p&gt;Static sites have many benefits, such as being super fast due to no querying databases or generating dynamic pages. As mentioned, being able to store the whole site&amp;mdash;including content&amp;mdash;in version control is awesome.&lt;/p&gt;
+
+&lt;p&gt;Being static HTML files means you can host pretty much anywhere. For instance you can use &lt;a href="http://github.com"&gt;GitHub&lt;/a&gt; to host static HTML sites for free, which works great when using Git.&lt;/p&gt;
+
+&lt;p&gt;There&amp;#39;s also less security issues with static files too—I&amp;#39;m sure anyone who&amp;#39;s dealt with WordPress (and perhaps other database driven CMS&amp;#39;s) will be thankful of.&lt;/p&gt;
+
+&lt;h2&gt;Other options&lt;/h2&gt;
+
+&lt;p&gt;There are many other static site generators, some made in PHP if you don&amp;#39;t fancy Ruby. Another tool to watch out for is &lt;a href="http://mixture.io"&gt;mixture.io&lt;/a&gt;. It has many similarities to Middleman, but without requiring the command line. It also runs on Windows too! I&amp;#39;d recommend checking it out.&lt;/p&gt;
+
+&lt;p&gt;If you don&amp;#39;t want to go fully static but like the idea of no databases, there&amp;#39;s also flat file CMS&amp;#39;s, which store all content in text files rather than a database. One option is &lt;a href="http://getkirby.com"&gt;Kirby&lt;/a&gt;, and another one that&amp;#39;s becoming increasingly popular is &lt;a href="http://statamic.com/"&gt;Statamic&lt;/a&gt;. I&amp;#39;ve not used either of these yet, but both look worth checking out.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>scrollUp jQuery plugin updates</title>
+    <link rel="alternate" href="http://markgoodyear.com/2013/04/scrollup-jquery-plugin-updates/"/>
+    <id>http://markgoodyear.com/2013/04/scrollup-jquery-plugin-updates/</id>
+    <published>2013-04-08T00:00:00Z</published>
+    <updated>2013-06-01T22:17:21+01:00</updated>
+    <author>
+      <name>Mark Goodyear</name>
+    </author>
+    <summary type="html">&lt;p&gt;A new option has been introduced to allow easily setting an image, rather than resorting to CSS image replacement techniques. Some under the hood optimisations and tweaks have been made, too.</summary>
+    <content type="html">&lt;p&gt;A new option has been introduced to allow easily setting an image, rather than resorting to CSS image replacement techniques. Some under the hood optimisations and tweaks have been made, too. (Thanks to NickRameau for suggestions).&lt;/p&gt;
+
+&lt;ul class="post-actions"&gt;
+  &lt;li&gt;&lt;a href=""&gt;Demo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=""&gt;Download&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=""&gt;Git&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Using images&lt;/h2&gt;
+
+&lt;p&gt;To use the new image feature simply add the following line to your settings (&lt;a href="http://markgoodyear.com/2013/01/scrollup-jquery-plugin/"&gt;see this post for how to install&lt;/a&gt;): &lt;code&gt;&lt;span class="opt"&gt;scrollImg&lt;/span&gt;: &lt;span class="val"&gt;true&lt;/span&gt;
+&lt;/code&gt; This will prevent any text set in &lt;code&gt;scollText&lt;/code&gt; from being visible, allowing you to set a background image in your CSS file — no image replacement techniques needed to hide the the text. Any text set in &lt;code&gt;scrollText&lt;/code&gt; will still be used as the link title.&lt;/p&gt;
+
+&lt;h3&gt;Example usage&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;JavaScript&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;scrollUp&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+  &lt;span class="na"&gt;scrollImg&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;CSS&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="highlight css"&gt;&lt;span class="nf"&gt;#scrollUp&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nl"&gt;bottom&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;20px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="nl"&gt;right&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;20px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="nl"&gt;width&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;38px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c"&gt;/* Width of image */&lt;/span&gt;
+  &lt;span class="nl"&gt;height&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;38px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c"&gt;/* Height of image */&lt;/span&gt;
+  &lt;span class="nl"&gt;background&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="sx"&gt;url(../../img/top.png)&lt;/span&gt; &lt;span class="nb"&gt;no-repeat&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;ul class="post-actions"&gt;
+  &lt;li&gt;&lt;a href=""&gt;Demo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=""&gt;Download&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=""&gt;Git&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
+  <entry>
+    <title>BrowserBlast 2: Relaunch</title>
+    <link rel="alternate" href="http://markgoodyear.com/2013/02/browserblast-2-relaunch/"/>
+    <id>http://markgoodyear.com/2013/02/browserblast-2-relaunch/</id>
+    <published>2013-02-13T00:00:00Z</published>
+    <updated>2013-06-01T17:58:57+01:00</updated>
+    <author>
+      <name>Mark Goodyear</name>
+    </author>
+    <summary>BrowserBlast 2 relaunched, departing ways from jQuery&amp;mdash;faster and more reliable. Rebuilt in vanilla JS and using Microsofts recommended methods, it ensures rock solid, fast, IE detection.</summary>
+    <content type="html">&lt;p class="lead"&gt;BrowserBlast 2 relaunched, departing ways from jQuery&amp;mdash;faster and more reliable.&lt;/p&gt;
+
+&lt;p&gt;To make the previous browserBlast even faster and more reliable, it’s been rebuilt entirely in JS, without needing to rely on jQuery. Using Microsofts recommended methods it ensures rock solid IE detection.&lt;/p&gt;
+
+&lt;ul class="post-actions"&gt;
+  &lt;li&gt;&lt;a href=""&gt;Demo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=""&gt;Download&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=""&gt;Git&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Also changed is separating CSS from the JS so it’s even easier to customise. This means by default, all styling is placed in your CSS file for ultimate control.&lt;/p&gt;
+
+&lt;h2&gt;How to use&lt;/h2&gt;
+
+&lt;p&gt;Simply include the &lt;code&gt;browserBlast.min.js&lt;/code&gt; and add the following to the &lt;strong&gt;footer:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;span class="nx"&gt;browserBlast&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;/pre&gt;
+&lt;h2&gt;Settings&lt;/h2&gt;
+
+&lt;p&gt;A list of all the settings with the defaults&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;span class="nx"&gt;browserBlast&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+  &lt;span class="na"&gt;devMode&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;// Show warning on all browsers for testing
+&lt;/span&gt;  &lt;span class="na"&gt;supportedIE&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;// Supported IE version, warning will display on older browsers
+&lt;/span&gt;  &lt;span class="na"&gt;message&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Hey! Your browser is unsupported. Please upgrade for the best experience.&amp;quot;&lt;/span&gt; &lt;span class="c1"&gt;// Set custom message
+&lt;/span&gt;&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/pre&gt;
+&lt;ul class="post-actions"&gt;
+  &lt;li&gt;&lt;a href=""&gt;Demo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=""&gt;Download&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=""&gt;Git&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
+  <entry>
+    <title>scrollUp jQuery plugin</title>
+    <link rel="alternate" href="http://markgoodyear.com/2013/01/scrollup-jquery-plugin/"/>
+    <id>http://markgoodyear.com/2013/01/scrollup-jquery-plugin/</id>
+    <published>2013-01-22T00:00:00Z</published>
+    <updated>2013-06-01T22:22:49+01:00</updated>
+    <author>
+      <name>Mark Goodyear</name>
+    </author>
+    <summary type="html">&lt;p class="lead"&gt;ScrollUp is a lightweight jQuery plugin to create a customisable &amp;ldquo;Scroll to top&amp;rdquo; feature that will work with any website, with ease.&lt;/p&gt;
+
+&lt;p&gt;</summary>
+    <content type="html">&lt;p class="lead"&gt;ScrollUp is a lightweight jQuery plugin to create a customisable &amp;ldquo;Scroll to top&amp;rdquo; feature that will work with any website, with ease.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Recently whilst working on a client project I was required to implement a &amp;ldquo;Scroll to top&amp;rdquo; feature to make it easy for the user to get back to the top of the page. I decided to take this further and turn it into a fully customisable jQuery plugin to work with any site.&lt;/p&gt;
+
+&lt;div&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Update 08/04/2013&lt;/strong&gt;: ScrollUp updated to v1.1. &lt;a href="http://markgoodyear.com/2013/04/scrollup-jquery-plugin-updates/"&gt;Read more here.&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;ul class="post-actions"&gt;
+  &lt;li&gt;&lt;a href=""&gt;Demo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=""&gt;Download&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=""&gt;Git&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;How to use&lt;/h2&gt;
+
+&lt;p&gt;Simply include the &lt;code&gt;jquery.scrollUp.min.js&lt;/code&gt; file and place the following in the head of your document (make sure jQuery is included):&lt;/p&gt;
+
+&lt;h3&gt;Minimum setup&lt;/h3&gt;
+&lt;pre class="highlight javascript"&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+  &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;scrollUp&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/pre&gt;
+&lt;h3&gt;Example with default options&lt;/h3&gt;
+&lt;pre class="highlight javascript"&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;scrollUp&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+    &lt;span class="na"&gt;scrollName&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;scrollUp&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;// Element ID
+&lt;/span&gt;    &lt;span class="na"&gt;topDistance&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;300&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;// Distance from top before showing element (px)
+&lt;/span&gt;    &lt;span class="na"&gt;topSpeed&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;300&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;// Speed back to top (ms)
+&lt;/span&gt;    &lt;span class="na"&gt;animation&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;fade&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;// Fade, slide, none
+&lt;/span&gt;    &lt;span class="na"&gt;animationInSpeed&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;// Animation in speed (ms)
+&lt;/span&gt;    &lt;span class="na"&gt;animationOutSpeed&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;// Animation out speed (ms)
+&lt;/span&gt;    &lt;span class="na"&gt;scrollText&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Scroll to top&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;// Text for element
+&lt;/span&gt;    &lt;span class="na"&gt;activeOverlay&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;// Set CSS color to display scrollUp active point, e.g &amp;#39;#00FFFF&amp;#39;
+&lt;/span&gt;  &lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/pre&gt;
+&lt;h3&gt;activeOverlay&lt;/h3&gt;
+
+&lt;p&gt;To create a visible line to help determin an ideal scroll distance from the top, assign a valid CSS colour to the &lt;code&gt;activeOverlay&lt;/code&gt; setting. This could be HEX, HSLA or RGB(A). Example: &lt;code&gt;activeOverlay: &amp;#39;#00FFFF&amp;#39;&lt;/code&gt;. &lt;a href="#"&gt;See the demo for an example&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Fully Customisable&lt;/h2&gt;
+
+&lt;p&gt;ScrollUp is fully customisable through CSS which makes it simple to fit right into your project. Simply target the scrollUp&amp;#39;s generated ID in your CSS file and set your styles. Below is a basic style example:&lt;/p&gt;
+&lt;pre class="highlight css"&gt;&lt;span class="nf"&gt;#scrollUp&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nl"&gt;bottom&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;20px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="nl"&gt;right&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;20px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="nl"&gt;padding&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;10px&lt;/span&gt; &lt;span class="m"&gt;20px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="nl"&gt;background&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;#555&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="nl"&gt;color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;#fff&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;a href="#"&gt;Check out the demo&lt;/a&gt; for more style and feature examples.&lt;/p&gt;
+
+&lt;ul class="post-actions"&gt;
+  &lt;li&gt;&lt;a href=""&gt;Demo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=""&gt;Download&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=""&gt;Git&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Meet Conditionizr</title>
+    <link rel="alternate" href="http://markgoodyear.com/2012/12/meet-conditionizr/"/>
+    <id>http://markgoodyear.com/2012/12/meet-conditionizr/</id>
+    <published>2012-12-18T00:00:00Z</published>
+    <updated>2013-06-01T16:33:04+01:00</updated>
+    <author>
+      <name>Mark Goodyear</name>
+    </author>
+    <summary>After much debate about a way forward past conditional statements, retina detection, and legacy content serving, Todd Motto and I have been working hard on a proposed solution: Conditionizr.</summary>
+    <content type="html">&lt;p&gt;&lt;p class="lead"&gt;After much debate about a way forward past conditional statements, retina detection, and legacy content serving, &lt;a href="http://twitter.com/toddmotto" target="_blank"&gt;Todd Motto&lt;/a&gt; and I have been working hard on a proposed solution: Conditionizr.&lt;/p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://conditionizr.com/"&gt;Conditionizr&lt;/a&gt; is a clever tool for front-end development that detects the end-users browser and pixel ratio, allowing you to serve specific conditional JavaScript and CSS files they need.&lt;/p&gt;
+
+&lt;ul class="post-actions"&gt;
+  &lt;li&gt;&lt;a href=""&gt;Demo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=""&gt;Download&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=""&gt;Git&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;Why you’ll love Conditionizr:&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2&gt;Conditional free HTML tags&lt;/h2&gt;
+
+&lt;p&gt;With legacy browsers, we often see Conditionial statements wrapped around our HTML element, so the browser can use the HTML tag relevant to the browser. Conditionizr steps in to take this conditional approach one step further, detecting those IE versions, and adds the relevant class-name to the HTML tag. This means no more conditional statements on the HTML tag. Conditionizr automates the process.&lt;/p&gt;
+
+&lt;h2&gt;Conditional loading&lt;/h2&gt;
+
+&lt;p&gt;Combined with class name additions, Conditionizr has an integrated script and style loading facility, allowing you to specify which scripts and styles you’d like to load for which browser. For example, a user browsing with IE7 would first receive an ‘ie7′ HTML class, then recieve the ie7.js and ie7.css files that Conditionizr automatically serves. Conditionizr also has a built-in custom script loader.&lt;/p&gt;
+
+&lt;h2&gt;Custom scripts and polyfills&lt;/h2&gt;
+
+&lt;p&gt;Having an optional script and stylesheet per legacy browser is fantastic, but what about a custom script? This could be a polyfill, such as HTML5 Shim, which you simply specify from a local or Google CDN source, and Conditionizr simply loads it right in when the relevant browser is in use.&lt;/p&gt;
+
+&lt;h2&gt;Less than IE version loader&lt;/h2&gt;
+
+&lt;p&gt;Alongside specific IE script and style loader, we’ve included an optional setting to specify a ‘less than IE’ version. This means that you could load a polyfill or certain script that you would like to apply to all ‘less than’ versions. If you were to declare ‘IE9′ as your less than, it would apply a ‘lt-ie9′ class for IE6, IE7 and IE8. Any scripts would also apply to these browser versions.&lt;/p&gt;
+
+&lt;h2&gt;Retina loading and classes&lt;/h2&gt;
+
+&lt;p&gt;Conditionizr automatically detects a retina device and tells the browser instantly, adding a ‘retina’ class. For devices that aren’t retina, it adds a ‘no-retina’ class. Hook your retina optimisations for CSS directly from the HTML tag. You can optionally load retina specific scripts and stylesheets too.&lt;/p&gt;
+
+&lt;h2&gt;Markup free&lt;/h2&gt;
+
+&lt;p&gt;Conditionizr is markup free, just simply include the plugin in your page, and let it work it’s magic. Conditionizr requires very little configuration, as it’s built on jQuery making the process seamless. Conditionizr comes with a few simple options, giving you the ability to turn scripts, styles, custom scripts on and off, and lots of other tools in just a few minutes. The conditional scripts and styles are served dynamically, keeping markup smart and clean.&lt;/p&gt;
+
+&lt;h2&gt;Cross browser bonus classes&lt;/h2&gt;
+
+&lt;p&gt;Even modern browsers can give you the odd quirk, and built-in to Conditionizr is not only legacy browser, but modern browser detection and HTML class additions. For instance, those browsing with Google Chrome, will receive a ‘chrome’ class. This feature was integrated to cover all bases when developing, and over coming strenuous browser quirks.&lt;/p&gt;
+
+&lt;h2&gt;Cross platform bonus classes&lt;/h2&gt;
+
+&lt;p&gt;Browsers on different platforms may give you slightly different CSS quirks, so we haven’t stopped there, Conditionizr detects the four main popular operating systems, Mac OS X, Windows, Linux and Unix, adding their CSS classes to help you out should you ever need it.&lt;/p&gt;
+
+&lt;h2&gt;Automated flexible Loading&lt;/h2&gt;
+
+&lt;p&gt;Once configured, Conditionizr only loads what the end-user needs. The built-in browser detector and script/style loader work together automatically, you just need to make sure the files for loading are present on the server. Conditionizr will instantly know which scripts and styles to load, and if any custom scripts are specified, and send them straight to the user.&lt;/p&gt;
+
+&lt;h2&gt;Modernizr Compatible&lt;/h2&gt;
+
+&lt;p&gt;Conditionizr integrates easily with Modernizr, combining the HTML classes to make your project development easier. Conditionizr takes a Modernizr-based approach with HTML classes, so we ensured it worked alongside the library. Combined with Modernizr, it’s the ultimate tool for front-end web development.&lt;/p&gt;
+
+&lt;ul class="post-actions"&gt;
+  &lt;li&gt;&lt;a href=""&gt;Demo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=""&gt;Download&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=""&gt;Git&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Against browser-sniffing? Read on.&lt;/h2&gt;
+
+&lt;p&gt;Browser sniffing is often considered unreliable, and Conditionizr was built to overcome this goal – we wanted to build a browser tool that people could actually use, that was a reliable delivery method for serving legacy content. The core functionality within Conditionizr is detecting and serving Internet Explorer legacy scripts and styles. With this in mind, we needed to bulletproof the detection process as much as possible, using a similar method to the way Google Analytics detects browsers. Combined with official Microsoft recommendations for Internet Explorer version detectioning, we set out to build a valuable front-end tool for any web project.&lt;/p&gt;
+
+&lt;p&gt;What Conditionizr does not do, is provide a replacement for front-end feature detection technologies for HTML5/CSS3 such as Modernizr. We advise running the two JavaScripts alongside eachother, giving you a progressive enhancement approach to front-end, and a sophisticated loading mechanism for catering for your Internet Explorer loading. If we can rely on JavaScript for feature detection and optimisation, then we can, without a doubt, rely on JavaScript for legacy content serving and retina detection. Instead of letting legacy formatting take over your markup – get started with Conditionizr.&lt;/p&gt;
+
+&lt;p&gt;Conditional statements are ancient, and their place amongst the powers of HTML5 just aren’t right – and this sparked the idea of a smarter approach. We’re in an age where we need to be moving forward and making use of excelling JavaScript libraries such as jQuery, Modernizr and hundreds more open-source development tools, and that’s why Conditionizr was built on JavaScript and jQuery. Questioning the fact that some users disable JavaScript, we think is no longer an issue. Users shouldn’t browse with JavaScript off, expecting the best web experience. As the saying goes – don’t watch a video casette and expect HD. The same applies with UA sniffing (User Agent) as people often deem it as unreliable as the UA is user-configurable (if they know how). The same applies here, if people are going to tamper with their browser, to trick the code – then they’re making a conscious decision to potentially receive unreliable content. The percentage of whom change their UA is extremely low.&lt;/p&gt;
+
+&lt;p&gt;Conditionizr simplifies the process of making conditional statements work, through a clever dynamic script and style loader. Through our robust JavaScript code, we’ve created a powerful, optimised plugin that makes development faster, easier and cleaner. Conditionizr automatically detects the browser in use, and serves up content that the browser needs. For instance, if you need to target each version of Internet Explorer, currently your code is going to be extremely clotted. With Conditionizr, it’s invisible. The only extra piece of markup is the inclusion of Conditionizr in your page.&lt;/p&gt;
+
+&lt;ul class="post-actions"&gt;
+  &lt;li&gt;&lt;a href=""&gt;Demo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=""&gt;Download&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=""&gt;Git&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
+</feed>
