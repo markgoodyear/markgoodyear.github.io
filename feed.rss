@@ -5,10 +5,237 @@
   <id>http://markgoodyear.com</id>
   <link href="http://markgoodyear.com"/>
   <link href="http://markgoodyear.com/feed.rss" rel="self"/>
-  <updated>2013-07-09T00:00:00Z</updated>
+  <updated>2013-07-30T00:00:00Z</updated>
   <author>
     <name>Mark Goodyear</name>
   </author>
+  <entry>
+    <title>Automating your workflow with Grunt</title>
+    <link rel="alternate" href="http://markgoodyear.com/2013/07/automating-your-workflow-with-grunt/"/>
+    <id>http://markgoodyear.com/2013/07/automating-your-workflow-with-grunt/</id>
+    <published>2013-07-30T00:00:00Z</published>
+    <updated>2013-07-30T22:07:48+01:00</updated>
+    <author>
+      <name>Mark Goodyear</name>
+    </author>
+    <summary>Learn how to automate your workflow with Grunt, reducing all those tedious tasks you repeat multiple times a day.</summary>
+    <content type="html">&lt;p class="lead"&gt;Learn how to automate your workflow with Grunt, reducing all those tedious tasks you repeat multiple times a day.&lt;/p&gt;
+
+&lt;h2&gt;The need for automation&lt;/h2&gt;
+
+&lt;p&gt;Recently I&amp;rsquo;ve been looking to improve my workflow to automate the tasks I repeat on a day-to-day basis. I also wanted to standardise projects across a team, set up a project structure and make sure the necessary tasks are done correctly. CodeKit has served me well, however there remain a few issues I wanted to address; the ability to automate more and be able to work cross-platform without needing to configure different apps to match a project structure. Say hello to &lt;a href="http://gruntjs.com/"&gt;Grunt&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;What is Grunt?&lt;/h2&gt;
+
+&lt;p&gt;To sum up Grunt, it&amp;rsquo;s a task runner built on &lt;a href="http://nodejs.org/"&gt;Node.js&lt;/a&gt;—&lt;em&gt;don&amp;rsquo;t let this put you off!&lt;/em&gt; Node.js is simple to install—just visit the site, download the install package and run it. If you&amp;rsquo;re on Mac, you can also install it with &lt;a href="http://brew.sh/"&gt;Homebrew&lt;/a&gt;. You&amp;rsquo;ll then want to install the Grunt CLI. I won&amp;rsquo;t go into great detail as they have a great &lt;a href="http://gruntjs.com/getting-started"&gt;getting started guide&lt;/a&gt;, so to summarise:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Make sure Node.js is installed. This will also install the Node Package Manager (NPM).&lt;/li&gt;
+&lt;li&gt;Install the Grunt CLI globally. &lt;code&gt;npm install -g grunt-cli&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;You&amp;rsquo;ll then need to create two files in the root of your project, &lt;code&gt;package.json&lt;/code&gt; and &lt;code&gt;Gruntfile.js&lt;/code&gt;. I&amp;rsquo;ll explain what these two files do next.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;em&gt;Before I continue, it&amp;rsquo;s worth noting you may need to run some install commands as admin. For example, Mac users will need to use &lt;code&gt;sudo&lt;/code&gt;:&lt;/em&gt;&lt;/p&gt;
+&lt;pre class="highlight text"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;sudo npm install -g grunt-cli
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;h2&gt;Setting up your project&lt;/h2&gt;
+
+&lt;p&gt;The &lt;code&gt;package.json&lt;/code&gt; file contains all the information about the project, such as the name and version. It also lists the dependancies used by the project. A basic &lt;code&gt;package.json&lt;/code&gt; will look like this:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;div class="lineno"&gt;4&lt;/div&gt;&lt;div class="lineno"&gt;5&lt;/div&gt;&lt;div class="lineno"&gt;6&lt;/div&gt;&lt;div class="lineno"&gt;7&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="s1"&gt;&amp;#39;name&amp;#39;&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;project-name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="s1"&gt;&amp;#39;version&amp;#39;&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;0.1.0&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="s1"&gt;&amp;#39;devDependencies&amp;#39;&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;grunt&amp;#39;&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;~0.4.1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;p&gt;This is basically telling us the project name, version number (using the &lt;a href="http://semver.org/"&gt;Semantic Versioning&lt;/a&gt; system) and that &lt;code&gt;grunt&lt;/code&gt; is a required dependency. To install dependencies, simply run:&lt;/p&gt;
+&lt;pre class="highlight text"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;npm install
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;p&gt;This installs all dependencies to the &lt;code&gt;node_modules&lt;/code&gt; folder.&lt;/p&gt;
+
+&lt;h2&gt;Configuring Grunt tasks&lt;/h2&gt;
+
+&lt;p&gt;Now we move onto setting up the &lt;code&gt;Gruntfile.js&lt;/code&gt; file. It can become quite a large file if there are lot of tasks, so to start off I&amp;rsquo;ll demonstrate a basic task which will compile your Sass (.scss) files. Firstly, you will need to install the &lt;a href="https://github.com/gruntjs/grunt-contrib-sass"&gt;Sass plugin&lt;/a&gt;:&lt;/p&gt;
+&lt;pre class="highlight text"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;npm install grunt-contrib-sass --save-dev
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;p&gt;Adding &lt;code&gt;--save-dev&lt;/code&gt; to the command automatically adds it to your &lt;code&gt;package.json&lt;/code&gt; file so you don&amp;rsquo;t need to worry about adding it manually. Below is a basic configuration to compile Sass—including a development config and a distribution config.&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;div class="lineno"&gt;4&lt;/div&gt;&lt;div class="lineno"&gt;5&lt;/div&gt;&lt;div class="lineno"&gt;6&lt;/div&gt;&lt;div class="lineno"&gt;7&lt;/div&gt;&lt;div class="lineno"&gt;8&lt;/div&gt;&lt;div class="lineno"&gt;9&lt;/div&gt;&lt;div class="lineno"&gt;10&lt;/div&gt;&lt;div class="lineno"&gt;11&lt;/div&gt;&lt;div class="lineno"&gt;12&lt;/div&gt;&lt;div class="lineno"&gt;13&lt;/div&gt;&lt;div class="lineno"&gt;14&lt;/div&gt;&lt;div class="lineno"&gt;15&lt;/div&gt;&lt;div class="lineno"&gt;16&lt;/div&gt;&lt;div class="lineno"&gt;17&lt;/div&gt;&lt;div class="lineno"&gt;18&lt;/div&gt;&lt;div class="lineno"&gt;19&lt;/div&gt;&lt;div class="lineno"&gt;20&lt;/div&gt;&lt;div class="lineno"&gt;21&lt;/div&gt;&lt;div class="lineno"&gt;22&lt;/div&gt;&lt;div class="lineno"&gt;23&lt;/div&gt;&lt;div class="lineno"&gt;24&lt;/div&gt;&lt;div class="lineno"&gt;25&lt;/div&gt;&lt;div class="lineno"&gt;26&lt;/div&gt;&lt;div class="lineno"&gt;27&lt;/div&gt;&lt;div class="lineno"&gt;28&lt;/div&gt;&lt;div class="lineno"&gt;29&lt;/div&gt;&lt;div class="lineno"&gt;30&lt;/div&gt;&lt;div class="lineno"&gt;31&lt;/div&gt;&lt;div class="lineno"&gt;32&lt;/div&gt;&lt;div class="lineno"&gt;33&lt;/div&gt;&lt;div class="lineno"&gt;34&lt;/div&gt;&lt;div class="lineno"&gt;35&lt;/div&gt;&lt;div class="lineno"&gt;36&lt;/div&gt;&lt;div class="lineno"&gt;37&lt;/div&gt;&lt;div class="lineno"&gt;38&lt;/div&gt;&lt;div class="lineno"&gt;39&lt;/div&gt;&lt;div class="lineno"&gt;40&lt;/div&gt;&lt;div class="lineno"&gt;41&lt;/div&gt;&lt;div class="lineno"&gt;42&lt;/div&gt;&lt;div class="lineno"&gt;43&lt;/div&gt;&lt;div class="lineno"&gt;44&lt;/div&gt;&lt;div class="lineno"&gt;45&lt;/div&gt;&lt;div class="lineno"&gt;46&lt;/div&gt;&lt;div class="lineno"&gt;47&lt;/div&gt;&lt;div class="lineno"&gt;48&lt;/div&gt;&lt;div class="lineno"&gt;49&lt;/div&gt;&lt;div class="lineno"&gt;50&lt;/div&gt;&lt;div class="lineno"&gt;51&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="c1"&gt;// Wrapper function
+&lt;/span&gt;&lt;span class="nx"&gt;module&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;exports&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;grunt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+  &lt;span class="c1"&gt;// Read package.json
+&lt;/span&gt;  &lt;span class="nx"&gt;grunt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;file&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;readJSON&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;package.json&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="c1"&gt;//Initialize grunt
+&lt;/span&gt;  &lt;span class="nx"&gt;grunt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;initConfig&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+
+    &lt;span class="c1"&gt;// Sass task
+&lt;/span&gt;    &lt;span class="nl"&gt;sass&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+      &lt;span class="c1"&gt;// Sass development options
+&lt;/span&gt;      &lt;span class="nl"&gt;dev&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="na"&gt;options&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+          &lt;span class="na"&gt;style&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;expanded&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="p"&gt;},&lt;/span&gt;
+        &lt;span class="na"&gt;files&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+          &lt;span class="s1"&gt;&amp;#39;css/main.css&amp;#39;&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;css/sass/global.scss&amp;#39;&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+      &lt;span class="p"&gt;},&lt;/span&gt;
+
+      &lt;span class="c1"&gt;// Sass distribution options
+&lt;/span&gt;      &lt;span class="nl"&gt;dist&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="na"&gt;options&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+          &lt;span class="na"&gt;style&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;compressed&amp;#39;&lt;/span&gt;
+        &lt;span class="p"&gt;},&lt;/span&gt;
+        &lt;span class="na"&gt;files&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+          &lt;span class="s1"&gt;&amp;#39;&amp;lt;%= css/main.css&amp;#39;&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;css/sass/main.scss&amp;#39;&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+      &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;},&lt;/span&gt;
+
+  &lt;span class="p"&gt;});&lt;/span&gt;
+
+
+
+  &lt;span class="c1"&gt;// Load tasks
+&lt;/span&gt;  &lt;span class="nx"&gt;grunt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;loadNpmTasks&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;grunt-contrib-sass&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+
+  &lt;span class="c1"&gt;// Create Default Task
+&lt;/span&gt;  &lt;span class="nx"&gt;grunt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;registerTask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;default&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;sass:dev&amp;#39;&lt;/span&gt; &lt;span class="c1"&gt;// Compile Sass with dev settings
+&lt;/span&gt;  &lt;span class="p"&gt;]);&lt;/span&gt;
+
+  &lt;span class="c1"&gt;// Create Distribution Task
+&lt;/span&gt;  &lt;span class="nx"&gt;grunt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;registerTask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;dist&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;sass:dist&amp;#39;&lt;/span&gt; &lt;span class="c1"&gt;// Compile Sass with distribution settings
+&lt;/span&gt;  &lt;span class="p"&gt;]);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;p&gt;If you&amp;rsquo;re familiar with JavaScript and JSON, it should be simple enough to understand. If not, it&amp;rsquo;s not as scary as it may look! Let&amp;rsquo;s take a closer look at what&amp;rsquo;s going on&amp;hellip;&lt;/p&gt;
+
+&lt;h3&gt;The wrapper function&lt;/h3&gt;
+&lt;pre class="highlight javascript"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;div class="lineno"&gt;4&lt;/div&gt;&lt;div class="lineno"&gt;5&lt;/div&gt;&lt;div class="lineno"&gt;6&lt;/div&gt;&lt;div class="lineno"&gt;7&lt;/div&gt;&lt;div class="lineno"&gt;8&lt;/div&gt;&lt;div class="lineno"&gt;9&lt;/div&gt;&lt;div class="lineno"&gt;10&lt;/div&gt;&lt;div class="lineno"&gt;11&lt;/div&gt;&lt;div class="lineno"&gt;12&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="c1"&gt;// Wrapper function
+&lt;/span&gt;&lt;span class="nx"&gt;module&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;exports&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;grunt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+  &lt;span class="c1"&gt;// Read package.json
+&lt;/span&gt;  &lt;span class="nx"&gt;grunt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;file&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;readJSON&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;package.json&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="c1"&gt;//Initialize grunt
+&lt;/span&gt;  &lt;span class="nx"&gt;grunt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;initConfig&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+    &lt;span class="p"&gt;[...]&lt;/span&gt;
+  &lt;span class="p"&gt;});&lt;/span&gt;
+
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;p&gt;The wrapper function contains two key parts. Firstly to read the project details we specified earlier in &lt;code&gt;package.json&lt;/code&gt; and then to initialize the Grunt configuration. This is where we configure Grunt tasks.&lt;/p&gt;
+
+&lt;h3&gt;Task configuration&lt;/h3&gt;
+
+&lt;p&gt;So, our Sass task looks a little like this:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;div class="lineno"&gt;4&lt;/div&gt;&lt;div class="lineno"&gt;5&lt;/div&gt;&lt;div class="lineno"&gt;6&lt;/div&gt;&lt;div class="lineno"&gt;7&lt;/div&gt;&lt;div class="lineno"&gt;8&lt;/div&gt;&lt;div class="lineno"&gt;9&lt;/div&gt;&lt;div class="lineno"&gt;10&lt;/div&gt;&lt;div class="lineno"&gt;11&lt;/div&gt;&lt;div class="lineno"&gt;12&lt;/div&gt;&lt;div class="lineno"&gt;13&lt;/div&gt;&lt;div class="lineno"&gt;14&lt;/div&gt;&lt;div class="lineno"&gt;15&lt;/div&gt;&lt;div class="lineno"&gt;16&lt;/div&gt;&lt;div class="lineno"&gt;17&lt;/div&gt;&lt;div class="lineno"&gt;18&lt;/div&gt;&lt;div class="lineno"&gt;19&lt;/div&gt;&lt;div class="lineno"&gt;20&lt;/div&gt;&lt;div class="lineno"&gt;21&lt;/div&gt;&lt;div class="lineno"&gt;22&lt;/div&gt;&lt;div class="lineno"&gt;23&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="c1"&gt;// Sass task
+&lt;/span&gt;&lt;span class="nx"&gt;sass&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+  &lt;span class="c1"&gt;// Sass development options
+&lt;/span&gt;  &lt;span class="nl"&gt;dev&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="na"&gt;options&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="na"&gt;style&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;expanded&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="na"&gt;files&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="s1"&gt;&amp;#39;css/main.css&amp;#39;&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;css/sass/global.scss&amp;#39;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="p"&gt;},&lt;/span&gt;
+
+  &lt;span class="c1"&gt;// Sass distribution options
+&lt;/span&gt;  &lt;span class="nl"&gt;dist&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="na"&gt;options&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="na"&gt;style&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;compressed&amp;#39;&lt;/span&gt;
+    &lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="na"&gt;files&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="s1"&gt;&amp;#39;css/main.css&amp;#39;&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;css/sass/global.scss&amp;#39;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;p&gt;Here we have two tasks configured within the Sass task, &lt;code&gt;dev&lt;/code&gt; and &lt;code&gt;dist&lt;/code&gt;. Both these are able to have custom options passed through, meaning it&amp;rsquo;s possible to compile Sass differently based on its environment. &lt;em&gt;How awesome is that?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Keeping it simple, I&amp;rsquo;ve only set up one option which is basically telling Grunt how to compile for each environment. Of course, there are many more options available which can be found at the plugins &lt;a href="http://github.com/gruntjs/grunt-contrib-sass"&gt;GitHub&lt;/a&gt; page. This is the same for all Grunt plugins—be sure to check their respective GitHub pages for a full list of options.&lt;/p&gt;
+
+&lt;p&gt;After setting up the options, we tell Grunt the destination file &lt;code&gt;css/main.css&lt;/code&gt; and the source file &lt;code&gt;css/sass/global.css&lt;/code&gt;. You can use the &lt;code&gt;css/sass/global.scss&lt;/code&gt; to import all other Sass files in the project:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="nx"&gt;files&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="s1"&gt;&amp;#39;css/main.css&amp;#39;&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;css/sass/global.scss&amp;#39;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;h3&gt;Loading the tasks&lt;/h3&gt;
+
+&lt;p&gt;Before Grunt can run the tasks, we need to load them—each dependency will need to be loaded in the same way. This is simply done by the following:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="nx"&gt;grunt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;loadNpmTasks&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;grunt-contrib-sass&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;h3&gt;Creating the tasks&lt;/h3&gt;
+
+&lt;p&gt;Next, we create the actual tasks which we run from Terminal. Below is a set up for both development and distribution tasks.&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;div class="lineno"&gt;4&lt;/div&gt;&lt;div class="lineno"&gt;5&lt;/div&gt;&lt;div class="lineno"&gt;6&lt;/div&gt;&lt;div class="lineno"&gt;7&lt;/div&gt;&lt;div class="lineno"&gt;8&lt;/div&gt;&lt;div class="lineno"&gt;9&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="c1"&gt;// Create Default Task
+&lt;/span&gt;&lt;span class="nx"&gt;grunt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;registerTask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;default&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+  &lt;span class="s1"&gt;&amp;#39;sass:dev&amp;#39;&lt;/span&gt; &lt;span class="c1"&gt;// Compile Sass with dev settings
+&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+
+&lt;span class="c1"&gt;// Create Distribution Task
+&lt;/span&gt;&lt;span class="nx"&gt;grunt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;registerTask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;dist&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+  &lt;span class="s1"&gt;&amp;#39;sass:dist&amp;#39;&lt;/span&gt; &lt;span class="c1"&gt;// Compile Sass with distribution settings
+&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;p&gt;As the development settings are likely to be used often, I use the &lt;code&gt;default&lt;/code&gt; task to run any development settings. The default task is run by typing &lt;code&gt;grunt&lt;/code&gt;, which is shorter to type than, say, &lt;code&gt;grunt dev&lt;/code&gt;. Saves a few characters!&lt;/p&gt;
+
+&lt;p&gt;When your project is ready for deploying, run &lt;code&gt;grunt dist&lt;/code&gt; and voila! Your code is now ready to go.&lt;/p&gt;
+
+&lt;h2&gt;Watch it!&lt;/h2&gt;
+
+&lt;p&gt;Now we have our tasks set up, we can get Grunt to watch files for changes, execute tasks and then reload the page for us. Firstly, install &lt;a href="https://github.com/gruntjs/grunt-contrib-watch"&gt;Grunt watch&lt;/a&gt;:&lt;/p&gt;
+&lt;pre class="highlight text"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;npm install grunt-contrib-watch --save-dev
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;p&gt;Configure the task:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;div class="lineno"&gt;4&lt;/div&gt;&lt;div class="lineno"&gt;5&lt;/div&gt;&lt;div class="lineno"&gt;6&lt;/div&gt;&lt;div class="lineno"&gt;7&lt;/div&gt;&lt;div class="lineno"&gt;8&lt;/div&gt;&lt;div class="lineno"&gt;9&lt;/div&gt;&lt;div class="lineno"&gt;10&lt;/div&gt;&lt;div class="lineno"&gt;11&lt;/div&gt;&lt;div class="lineno"&gt;12&lt;/div&gt;&lt;div class="lineno"&gt;13&lt;/div&gt;&lt;div class="lineno"&gt;14&lt;/div&gt;&lt;div class="lineno"&gt;15&lt;/div&gt;&lt;div class="lineno"&gt;16&lt;/div&gt;&lt;div class="lineno"&gt;17&lt;/div&gt;&lt;div class="lineno"&gt;18&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="c1"&gt;// Watch files
+&lt;/span&gt;&lt;span class="nx"&gt;watch&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+  &lt;span class="c1"&gt;// Watch .scss files
+&lt;/span&gt;  &lt;span class="nl"&gt;sass&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="na"&gt;files&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;css/sass/**/*.scss&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="na"&gt;tasks&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;sass:dev&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+  &lt;span class="p"&gt;},&lt;/span&gt;
+
+  &lt;span class="c1"&gt;// Live reload files
+&lt;/span&gt;  &lt;span class="nl"&gt;livereload&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="na"&gt;options&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;livereload&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="na"&gt;files&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+      &lt;span class="s1"&gt;&amp;#39;css/**/*.css&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+      &lt;span class="s1"&gt;&amp;#39;**/*.html&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;]&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;p&gt;Load the plugin:&lt;/p&gt;
+&lt;pre class="highlight text"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;grunt.loadNpmTasks(&amp;#39;grunt-contrib-watch&amp;#39;);
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;p&gt;Now we can simply type &lt;code&gt;grunt watch&lt;/code&gt; into Terminal and it will watch for changes to any &lt;code&gt;.scss&lt;/code&gt; files, then run the &lt;code&gt;sass:dev&lt;/code&gt; task automatically. To reload the browser, &lt;a href="http://livereload.com"&gt;LiveReload&lt;/a&gt; is configured to watch any changes to &lt;code&gt;.css&lt;/code&gt; files. I&amp;rsquo;ve also specified to reload any &lt;code&gt;.html&lt;/code&gt; files so you can see how it works. You will need to install the &lt;a href="http://feedback.livereload.com/knowledgebase/articles/86242-how-do-i-install-and-use-the-browser-extensions-"&gt;LiveReload extension&lt;/a&gt; for either Safari, Chrome or Firefox.&lt;/p&gt;
+
+&lt;h2&gt;Taking it further&lt;/h2&gt;
+
+&lt;p&gt;This is only a very small amount of what Grunt is capable of. I&amp;rsquo;d recommend reading through the documentation and checking out the &lt;a href="http://gruntjs.com/plugins"&gt;Grunt plugins&lt;/a&gt; available (there are lots!) to see what else Grunt can do.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve set up a Grunt starter project which I use as a base—you can find it on &lt;a href="https://github.com/markgoodyear/grunt-starter"&gt;GitHub&lt;/a&gt;. Feel free to adapt it, improve it and learn from it. Currently, it includes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;JavaScript linting, concatenation and minification&lt;/li&gt;
+&lt;li&gt;Sass compiling with development and production options&lt;/li&gt;
+&lt;li&gt;Sass sourcemaps (requires Sass 3.3.0)&lt;/li&gt;
+&lt;li&gt;Rasterizing .svg files&lt;/li&gt;
+&lt;li&gt;Compress .jpg/.jpeg, .png and .svg files&lt;/li&gt;
+&lt;li&gt;Reload the browser on file changes&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;What are you waiting for? Get Grunting!&lt;/em&gt;&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Quick tip: Display page ID&amp;#39;s in the WordPress admin area</title>
     <link rel="alternate" href="http://markgoodyear.com/2013/07/display-page-id-wordpress-admin-area/"/>
@@ -26,7 +253,7 @@
 &lt;p&gt;&lt;/p&gt;
 
 &lt;p&gt;To display the page ID next to the page title, simply add this snippet to your themes &lt;code&gt;functions.php&lt;/code&gt; file:&lt;/p&gt;
-&lt;pre class="highlight php"&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;pre class="highlight php"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;div class="lineno"&gt;4&lt;/div&gt;&lt;div class="lineno"&gt;5&lt;/div&gt;&lt;div class="lineno"&gt;6&lt;/div&gt;&lt;div class="lineno"&gt;7&lt;/div&gt;&lt;div class="lineno"&gt;8&lt;/div&gt;&lt;div class="lineno"&gt;9&lt;/div&gt;&lt;div class="lineno"&gt;10&lt;/div&gt;&lt;div class="lineno"&gt;11&lt;/div&gt;&lt;div class="lineno"&gt;12&lt;/div&gt;&lt;div class="lineno"&gt;13&lt;/div&gt;&lt;div class="lineno"&gt;14&lt;/div&gt;&lt;div class="lineno"&gt;15&lt;/div&gt;&lt;div class="lineno"&gt;16&lt;/div&gt;&lt;div class="lineno"&gt;17&lt;/div&gt;&lt;div class="lineno"&gt;18&lt;/div&gt;&lt;div class="lineno"&gt;19&lt;/div&gt;&lt;div class="lineno"&gt;20&lt;/div&gt;&lt;div class="lineno"&gt;21&lt;/div&gt;&lt;div class="lineno"&gt;22&lt;/div&gt;&lt;div class="lineno"&gt;23&lt;/div&gt;&lt;div class="lineno"&gt;24&lt;/div&gt;&lt;div class="lineno"&gt;25&lt;/div&gt;&lt;div class="lineno"&gt;26&lt;/div&gt;&lt;div class="lineno"&gt;27&lt;/div&gt;&lt;div class="lineno"&gt;28&lt;/div&gt;&lt;div class="lineno"&gt;29&lt;/div&gt;&lt;div class="lineno"&gt;30&lt;/div&gt;&lt;div class="lineno"&gt;31&lt;/div&gt;&lt;div class="lineno"&gt;32&lt;/div&gt;&lt;div class="lineno"&gt;33&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
 
 &lt;span class="c1"&gt;// Set columns to be used in the Pages section
 &lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;custom_set_pages_columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$columns&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
@@ -59,9 +286,9 @@
 &lt;span class="nx"&gt;add_action&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;admin_head&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;custom_admin_styling&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;
-&lt;/pre&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
 &lt;p&gt;Your Pages admin section should now look something like this:
-&lt;span class="post-img"&gt;&lt;img alt="WordPress Page ID" src="../img/posts/wordpress-page-id.png" /&gt;&lt;/span&gt;
+&lt;span class="post-img"&gt;&lt;img alt="WordPress Page ID" src="img/posts/wordpress-page-id.png" /&gt;&lt;/span&gt;
 Now you can easily check the ID of any page. If anyone has any other (or better) methods, please let me know via the comments below or send me a &lt;a href="http://twitter.com/markgdyr"&gt;Tweet&lt;/a&gt;.&lt;/p&gt;
 </content>
   </entry>
@@ -85,15 +312,15 @@ Now you can easily check the ID of any page. If anyone has any other (or better)
 
 &lt;p&gt;Jekyll is primarily for blogging, however I wanted the ability to expand in the future should I feel the need to&amp;mdash;perhaps by adding on a portfolio section or any other dynamic content types. I then stumbled across &lt;a href="http//middlemanapp.com"&gt;Middleman&lt;/a&gt;, which is like a suped up Jekyll. &lt;/p&gt;
 
-&lt;h2&gt;Who&amp;#39;s the Middleman?&lt;/h2&gt;
+&lt;h2&gt;Who&amp;rsquo;s the Middleman?&lt;/h2&gt;
 
-&lt;p&gt;Middleman is a static site site generator which includes built-in features such as Sass, Haml, CoffeeScript, Markdown, LiveReload and many more that work straight out of the box with little or no configuration needed. With the ability to create multiple blogs, this is perfect to use for a portfolio section. It&amp;#39;s also extensible with many &lt;a href="http://directory.middlemanapp.com/#/extensions/all"&gt;useful extensions&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Middleman is a static site site generator which includes built-in features such as Sass, Haml, CoffeeScript, Markdown, LiveReload and many more that work straight out of the box with little or no configuration needed. With the ability to create multiple blogs, this is perfect to use for a portfolio section. It&amp;rsquo;s also extensible with many &lt;a href="http://directory.middlemanapp.com/#/extensions/all"&gt;useful extensions&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;Middleman is a little more involved to get set up, requiring use of Terminal and some basic Ruby knowledge. Knowing this, and armed without any Ruby knowledge, I managed to get set up pretty quick and found it relatively painless&amp;mdash;so don&amp;#39;t let it put you off. There is a great &lt;a href="http://middlemanapp.com/getting-started/"&gt;walkthrough&lt;/a&gt; on the Middleman site, which explains how to install and set-up a new project.&lt;/p&gt;
+&lt;p&gt;Middleman is a little more involved to get set up, requiring use of Terminal and some basic Ruby knowledge. Knowing this, and armed without any Ruby knowledge, I managed to get set up pretty quick and found it relatively painless&amp;mdash;so don&amp;rsquo;t let it put you off. There is a great &lt;a href="http://middlemanapp.com/getting-started/"&gt;walkthrough&lt;/a&gt; on the Middleman site, which explains how to install and set-up a new project.&lt;/p&gt;
 
 &lt;h3&gt;How does it work?&lt;/h3&gt;
 
-&lt;p&gt;It&amp;#39;s simple. My site has two folders: &lt;code&gt;source&lt;/code&gt; and &lt;code&gt;build&lt;/code&gt;. All my templates/Sass files are in the &lt;code&gt;source&lt;/code&gt; folder, which are then compiled into flat HTML and CSS files in the &lt;code&gt;build&lt;/code&gt; folder when I&amp;#39;m ready to deploy. I then deploy the &lt;code&gt;build&lt;/code&gt; folder to my server and that&amp;#39;s it. No database synching to worry about.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s simple. My site has two folders: &lt;code&gt;source&lt;/code&gt; and &lt;code&gt;build&lt;/code&gt;. All my templates/Sass files are in the &lt;code&gt;source&lt;/code&gt; folder, which are then compiled into flat HTML and CSS files in the &lt;code&gt;build&lt;/code&gt; folder when I&amp;rsquo;m ready to deploy. I then deploy the &lt;code&gt;build&lt;/code&gt; folder to my server and that&amp;rsquo;s it. No database synching to worry about.&lt;/p&gt;
 
 &lt;h2&gt;Why Static?&lt;/h2&gt;
 
@@ -101,13 +328,13 @@ Now you can easily check the ID of any page. If anyone has any other (or better)
 
 &lt;p&gt;Being static HTML files means you can host pretty much anywhere. For instance you can use &lt;a href="http://github.com"&gt;GitHub&lt;/a&gt; to host static HTML sites for free, which works great when using Git.&lt;/p&gt;
 
-&lt;p&gt;There&amp;#39;s also less security issues with static files too—I&amp;#39;m sure anyone who&amp;#39;s dealt with WordPress (and perhaps other database driven CMS&amp;#39;s) will be thankful of.&lt;/p&gt;
+&lt;p&gt;There&amp;rsquo;s also less security issues with static files too—I&amp;rsquo;m sure anyone who&amp;rsquo;s dealt with WordPress (and perhaps other database driven CMS&amp;rsquo;s) will be thankful of.&lt;/p&gt;
 
 &lt;h2&gt;Other options&lt;/h2&gt;
 
-&lt;p&gt;There are many other static site generators, some made in PHP if you don&amp;#39;t fancy Ruby. Another tool to watch out for is &lt;a href="http://mixture.io"&gt;mixture.io&lt;/a&gt;. It has many similarities to Middleman, but without requiring the command line. It also runs on Windows too! I&amp;#39;d recommend checking it out.&lt;/p&gt;
+&lt;p&gt;There are many other static site generators, some made in PHP if you don&amp;rsquo;t fancy Ruby. Another tool to watch out for is &lt;a href="http://mixture.io"&gt;mixture.io&lt;/a&gt;. It has many similarities to Middleman, but without requiring the command line. It also runs on Windows too! I&amp;rsquo;d recommend checking it out.&lt;/p&gt;
 
-&lt;p&gt;If you don&amp;#39;t want to go fully static but like the idea of no databases, there&amp;#39;s also flat file CMS&amp;#39;s, which store all content in text files rather than a database. One option is &lt;a href="http://getkirby.com"&gt;Kirby&lt;/a&gt;, and another one that&amp;#39;s becoming increasingly popular is &lt;a href="http://statamic.com/"&gt;Statamic&lt;/a&gt;. I&amp;#39;ve not used either of these yet, but both look worth checking out.&lt;/p&gt;
+&lt;p&gt;If you don&amp;rsquo;t want to go fully static but like the idea of no databases, there&amp;rsquo;s also flat file CMS&amp;rsquo;s, which store all content in text files rather than a database. One option is &lt;a href="http://getkirby.com"&gt;Kirby&lt;/a&gt;, and another one that&amp;rsquo;s becoming increasingly popular is &lt;a href="http://statamic.com/"&gt;Statamic&lt;/a&gt;. I&amp;rsquo;ve not used either of these yet, but both look worth checking out.&lt;/p&gt;
 </content>
   </entry>
   <entry>
@@ -136,19 +363,19 @@ Now you can easily check the ID of any page. If anyone has any other (or better)
 &lt;h3&gt;Example usage&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;JavaScript&lt;/strong&gt;&lt;/p&gt;
-&lt;pre class="highlight javascript"&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;scrollUp&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+&lt;pre class="highlight javascript"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;scrollUp&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
   &lt;span class="na"&gt;scrollImg&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;
 &lt;span class="p"&gt;});&lt;/span&gt;
-&lt;/pre&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;CSS&lt;/strong&gt;&lt;/p&gt;
-&lt;pre class="highlight css"&gt;&lt;span class="nf"&gt;#scrollUp&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;pre class="highlight css"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;div class="lineno"&gt;4&lt;/div&gt;&lt;div class="lineno"&gt;5&lt;/div&gt;&lt;div class="lineno"&gt;6&lt;/div&gt;&lt;div class="lineno"&gt;7&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="nf"&gt;#scrollUp&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="nl"&gt;bottom&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;20px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
   &lt;span class="nl"&gt;right&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;20px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
   &lt;span class="nl"&gt;width&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;38px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c"&gt;/* Width of image */&lt;/span&gt;
   &lt;span class="nl"&gt;height&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;38px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c"&gt;/* Height of image */&lt;/span&gt;
   &lt;span class="nl"&gt;background&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="sx"&gt;url(../../img/top.png)&lt;/span&gt; &lt;span class="nb"&gt;no-repeat&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
 &lt;ul class="post-actions"&gt;
   &lt;li&gt;&lt;a href=""&gt;Demo&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=""&gt;Download&lt;/a&gt;&lt;/li&gt;
@@ -181,17 +408,17 @@ Now you can easily check the ID of any page. If anyone has any other (or better)
 &lt;h2&gt;How to use&lt;/h2&gt;
 
 &lt;p&gt;Simply include the &lt;code&gt;browserBlast.min.js&lt;/code&gt; and add the following to the &lt;strong&gt;footer:&lt;/strong&gt;&lt;/p&gt;
-&lt;pre class="highlight javascript"&gt;&lt;span class="nx"&gt;browserBlast&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
-&lt;/pre&gt;
+&lt;pre class="highlight javascript"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="nx"&gt;browserBlast&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
 &lt;h2&gt;Settings&lt;/h2&gt;
 
 &lt;p&gt;A list of all the settings with the defaults&lt;/p&gt;
-&lt;pre class="highlight javascript"&gt;&lt;span class="nx"&gt;browserBlast&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+&lt;pre class="highlight javascript"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;div class="lineno"&gt;4&lt;/div&gt;&lt;div class="lineno"&gt;5&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="nx"&gt;browserBlast&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
   &lt;span class="na"&gt;devMode&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;// Show warning on all browsers for testing
 &lt;/span&gt;  &lt;span class="na"&gt;supportedIE&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;// Supported IE version, warning will display on older browsers
 &lt;/span&gt;  &lt;span class="na"&gt;message&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Hey! Your browser is unsupported. Please upgrade for the best experience.&amp;quot;&lt;/span&gt; &lt;span class="c1"&gt;// Set custom message
 &lt;/span&gt;&lt;span class="p"&gt;});&lt;/span&gt;
-&lt;/pre&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
 &lt;ul class="post-actions"&gt;
   &lt;li&gt;&lt;a href=""&gt;Demo&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=""&gt;Download&lt;/a&gt;&lt;/li&gt;
@@ -232,12 +459,12 @@ Now you can easily check the ID of any page. If anyone has any other (or better)
 &lt;p&gt;Simply include the &lt;code&gt;jquery.scrollUp.min.js&lt;/code&gt; file and place the following in the head of your document (make sure jQuery is included):&lt;/p&gt;
 
 &lt;h3&gt;Minimum setup&lt;/h3&gt;
-&lt;pre class="highlight javascript"&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+&lt;pre class="highlight javascript"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
   &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;scrollUp&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
 &lt;span class="p"&gt;});&lt;/span&gt;
-&lt;/pre&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
 &lt;h3&gt;Example with default options&lt;/h3&gt;
-&lt;pre class="highlight javascript"&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;pre class="highlight javascript"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;div class="lineno"&gt;4&lt;/div&gt;&lt;div class="lineno"&gt;5&lt;/div&gt;&lt;div class="lineno"&gt;6&lt;/div&gt;&lt;div class="lineno"&gt;7&lt;/div&gt;&lt;div class="lineno"&gt;8&lt;/div&gt;&lt;div class="lineno"&gt;9&lt;/div&gt;&lt;div class="lineno"&gt;10&lt;/div&gt;&lt;div class="lineno"&gt;11&lt;/div&gt;&lt;div class="lineno"&gt;12&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;scrollUp&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
     &lt;span class="na"&gt;scrollName&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;scrollUp&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;// Element ID
 &lt;/span&gt;    &lt;span class="na"&gt;topDistance&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;300&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;// Distance from top before showing element (px)
@@ -249,108 +476,23 @@ Now you can easily check the ID of any page. If anyone has any other (or better)
 &lt;/span&gt;    &lt;span class="na"&gt;activeOverlay&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;// Set CSS color to display scrollUp active point, e.g &amp;#39;#00FFFF&amp;#39;
 &lt;/span&gt;  &lt;span class="p"&gt;});&lt;/span&gt;
 &lt;span class="p"&gt;});&lt;/span&gt;
-&lt;/pre&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
 &lt;h3&gt;activeOverlay&lt;/h3&gt;
 
 &lt;p&gt;To create a visible line to help determin an ideal scroll distance from the top, assign a valid CSS colour to the &lt;code&gt;activeOverlay&lt;/code&gt; setting. This could be HEX, HSLA or RGB(A). Example: &lt;code&gt;activeOverlay: &amp;#39;#00FFFF&amp;#39;&lt;/code&gt;. &lt;a href="#"&gt;See the demo for an example&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2&gt;Fully Customisable&lt;/h2&gt;
 
-&lt;p&gt;ScrollUp is fully customisable through CSS which makes it simple to fit right into your project. Simply target the scrollUp&amp;#39;s generated ID in your CSS file and set your styles. Below is a basic style example:&lt;/p&gt;
-&lt;pre class="highlight css"&gt;&lt;span class="nf"&gt;#scrollUp&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;p&gt;ScrollUp is fully customisable through CSS which makes it simple to fit right into your project. Simply target the scrollUp&amp;rsquo;s generated ID in your CSS file and set your styles. Below is a basic style example:&lt;/p&gt;
+&lt;pre class="highlight css"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;div class="lineno"&gt;4&lt;/div&gt;&lt;div class="lineno"&gt;5&lt;/div&gt;&lt;div class="lineno"&gt;6&lt;/div&gt;&lt;div class="lineno"&gt;7&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="nf"&gt;#scrollUp&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="nl"&gt;bottom&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;20px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
   &lt;span class="nl"&gt;right&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;20px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
   &lt;span class="nl"&gt;padding&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;10px&lt;/span&gt; &lt;span class="m"&gt;20px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
   &lt;span class="nl"&gt;background&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;#555&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
   &lt;span class="nl"&gt;color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;#fff&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;a href="#"&gt;Check out the demo&lt;/a&gt; for more style and feature examples.&lt;/p&gt;
-
-&lt;ul class="post-actions"&gt;
-  &lt;li&gt;&lt;a href=""&gt;Demo&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=""&gt;Download&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=""&gt;Git&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Meet Conditionizr</title>
-    <link rel="alternate" href="http://markgoodyear.com/2012/12/meet-conditionizr/"/>
-    <id>http://markgoodyear.com/2012/12/meet-conditionizr/</id>
-    <published>2012-12-18T00:00:00Z</published>
-    <updated>2013-06-01T16:33:04+01:00</updated>
-    <author>
-      <name>Mark Goodyear</name>
-    </author>
-    <summary>After much debate about a way forward past conditional statements, retina detection, and legacy content serving, Todd Motto and I have been working hard on a proposed solution: Conditionizr.</summary>
-    <content type="html">&lt;p&gt;&lt;p class="lead"&gt;After much debate about a way forward past conditional statements, retina detection, and legacy content serving, &lt;a href="http://twitter.com/toddmotto" target="_blank"&gt;Todd Motto&lt;/a&gt; and I have been working hard on a proposed solution: Conditionizr.&lt;/p&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="http://conditionizr.com/"&gt;Conditionizr&lt;/a&gt; is a clever tool for front-end development that detects the end-users browser and pixel ratio, allowing you to serve specific conditional JavaScript and CSS files they need.&lt;/p&gt;
-
-&lt;ul class="post-actions"&gt;
-  &lt;li&gt;&lt;a href=""&gt;Demo&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=""&gt;Download&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=""&gt;Git&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;em&gt;Why you’ll love Conditionizr:&lt;/em&gt;&lt;/p&gt;
-
-&lt;h2&gt;Conditional free HTML tags&lt;/h2&gt;
-
-&lt;p&gt;With legacy browsers, we often see Conditionial statements wrapped around our HTML element, so the browser can use the HTML tag relevant to the browser. Conditionizr steps in to take this conditional approach one step further, detecting those IE versions, and adds the relevant class-name to the HTML tag. This means no more conditional statements on the HTML tag. Conditionizr automates the process.&lt;/p&gt;
-
-&lt;h2&gt;Conditional loading&lt;/h2&gt;
-
-&lt;p&gt;Combined with class name additions, Conditionizr has an integrated script and style loading facility, allowing you to specify which scripts and styles you’d like to load for which browser. For example, a user browsing with IE7 would first receive an ‘ie7′ HTML class, then recieve the ie7.js and ie7.css files that Conditionizr automatically serves. Conditionizr also has a built-in custom script loader.&lt;/p&gt;
-
-&lt;h2&gt;Custom scripts and polyfills&lt;/h2&gt;
-
-&lt;p&gt;Having an optional script and stylesheet per legacy browser is fantastic, but what about a custom script? This could be a polyfill, such as HTML5 Shim, which you simply specify from a local or Google CDN source, and Conditionizr simply loads it right in when the relevant browser is in use.&lt;/p&gt;
-
-&lt;h2&gt;Less than IE version loader&lt;/h2&gt;
-
-&lt;p&gt;Alongside specific IE script and style loader, we’ve included an optional setting to specify a ‘less than IE’ version. This means that you could load a polyfill or certain script that you would like to apply to all ‘less than’ versions. If you were to declare ‘IE9′ as your less than, it would apply a ‘lt-ie9′ class for IE6, IE7 and IE8. Any scripts would also apply to these browser versions.&lt;/p&gt;
-
-&lt;h2&gt;Retina loading and classes&lt;/h2&gt;
-
-&lt;p&gt;Conditionizr automatically detects a retina device and tells the browser instantly, adding a ‘retina’ class. For devices that aren’t retina, it adds a ‘no-retina’ class. Hook your retina optimisations for CSS directly from the HTML tag. You can optionally load retina specific scripts and stylesheets too.&lt;/p&gt;
-
-&lt;h2&gt;Markup free&lt;/h2&gt;
-
-&lt;p&gt;Conditionizr is markup free, just simply include the plugin in your page, and let it work it’s magic. Conditionizr requires very little configuration, as it’s built on jQuery making the process seamless. Conditionizr comes with a few simple options, giving you the ability to turn scripts, styles, custom scripts on and off, and lots of other tools in just a few minutes. The conditional scripts and styles are served dynamically, keeping markup smart and clean.&lt;/p&gt;
-
-&lt;h2&gt;Cross browser bonus classes&lt;/h2&gt;
-
-&lt;p&gt;Even modern browsers can give you the odd quirk, and built-in to Conditionizr is not only legacy browser, but modern browser detection and HTML class additions. For instance, those browsing with Google Chrome, will receive a ‘chrome’ class. This feature was integrated to cover all bases when developing, and over coming strenuous browser quirks.&lt;/p&gt;
-
-&lt;h2&gt;Cross platform bonus classes&lt;/h2&gt;
-
-&lt;p&gt;Browsers on different platforms may give you slightly different CSS quirks, so we haven’t stopped there, Conditionizr detects the four main popular operating systems, Mac OS X, Windows, Linux and Unix, adding their CSS classes to help you out should you ever need it.&lt;/p&gt;
-
-&lt;h2&gt;Automated flexible Loading&lt;/h2&gt;
-
-&lt;p&gt;Once configured, Conditionizr only loads what the end-user needs. The built-in browser detector and script/style loader work together automatically, you just need to make sure the files for loading are present on the server. Conditionizr will instantly know which scripts and styles to load, and if any custom scripts are specified, and send them straight to the user.&lt;/p&gt;
-
-&lt;h2&gt;Modernizr Compatible&lt;/h2&gt;
-
-&lt;p&gt;Conditionizr integrates easily with Modernizr, combining the HTML classes to make your project development easier. Conditionizr takes a Modernizr-based approach with HTML classes, so we ensured it worked alongside the library. Combined with Modernizr, it’s the ultimate tool for front-end web development.&lt;/p&gt;
-
-&lt;ul class="post-actions"&gt;
-  &lt;li&gt;&lt;a href=""&gt;Demo&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=""&gt;Download&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=""&gt;Git&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;Against browser-sniffing? Read on.&lt;/h2&gt;
-
-&lt;p&gt;Browser sniffing is often considered unreliable, and Conditionizr was built to overcome this goal – we wanted to build a browser tool that people could actually use, that was a reliable delivery method for serving legacy content. The core functionality within Conditionizr is detecting and serving Internet Explorer legacy scripts and styles. With this in mind, we needed to bulletproof the detection process as much as possible, using a similar method to the way Google Analytics detects browsers. Combined with official Microsoft recommendations for Internet Explorer version detectioning, we set out to build a valuable front-end tool for any web project.&lt;/p&gt;
-
-&lt;p&gt;What Conditionizr does not do, is provide a replacement for front-end feature detection technologies for HTML5/CSS3 such as Modernizr. We advise running the two JavaScripts alongside eachother, giving you a progressive enhancement approach to front-end, and a sophisticated loading mechanism for catering for your Internet Explorer loading. If we can rely on JavaScript for feature detection and optimisation, then we can, without a doubt, rely on JavaScript for legacy content serving and retina detection. Instead of letting legacy formatting take over your markup – get started with Conditionizr.&lt;/p&gt;
-
-&lt;p&gt;Conditional statements are ancient, and their place amongst the powers of HTML5 just aren’t right – and this sparked the idea of a smarter approach. We’re in an age where we need to be moving forward and making use of excelling JavaScript libraries such as jQuery, Modernizr and hundreds more open-source development tools, and that’s why Conditionizr was built on JavaScript and jQuery. Questioning the fact that some users disable JavaScript, we think is no longer an issue. Users shouldn’t browse with JavaScript off, expecting the best web experience. As the saying goes – don’t watch a video casette and expect HD. The same applies with UA sniffing (User Agent) as people often deem it as unreliable as the UA is user-configurable (if they know how). The same applies here, if people are going to tamper with their browser, to trick the code – then they’re making a conscious decision to potentially receive unreliable content. The percentage of whom change their UA is extremely low.&lt;/p&gt;
-
-&lt;p&gt;Conditionizr simplifies the process of making conditional statements work, through a clever dynamic script and style loader. Through our robust JavaScript code, we’ve created a powerful, optimised plugin that makes development faster, easier and cleaner. Conditionizr automatically detects the browser in use, and serves up content that the browser needs. For instance, if you need to target each version of Internet Explorer, currently your code is going to be extremely clotted. With Conditionizr, it’s invisible. The only extra piece of markup is the inclusion of Conditionizr in your page.&lt;/p&gt;
 
 &lt;ul class="post-actions"&gt;
   &lt;li&gt;&lt;a href=""&gt;Demo&lt;/a&gt;&lt;/li&gt;
