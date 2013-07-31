@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://markgoodyear.com/2013/07/automating-your-workflow-with-grunt/"/>
     <id>http://markgoodyear.com/2013/07/automating-your-workflow-with-grunt/</id>
     <published>2013-07-30T00:00:00Z</published>
-    <updated>2013-07-30T22:07:48+01:00</updated>
+    <updated>2013-07-31T11:14:27+01:00</updated>
     <author>
       <name>Mark Goodyear</name>
     </author>
@@ -88,7 +88,7 @@
           &lt;span class="na"&gt;style&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;compressed&amp;#39;&lt;/span&gt;
         &lt;span class="p"&gt;},&lt;/span&gt;
         &lt;span class="na"&gt;files&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-          &lt;span class="s1"&gt;&amp;#39;&amp;lt;%= css/main.css&amp;#39;&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;css/sass/main.scss&amp;#39;&lt;/span&gt;
+          &lt;span class="s1"&gt;&amp;#39;css/main.css&amp;#39;&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;css/sass/main.scss&amp;#39;&lt;/span&gt;
         &lt;span class="p"&gt;}&lt;/span&gt;
       &lt;span class="p"&gt;}&lt;/span&gt;
     &lt;span class="p"&gt;},&lt;/span&gt;
@@ -241,7 +241,7 @@
     <link rel="alternate" href="http://markgoodyear.com/2013/07/display-page-id-wordpress-admin-area/"/>
     <id>http://markgoodyear.com/2013/07/display-page-id-wordpress-admin-area/</id>
     <published>2013-07-09T00:00:00Z</published>
-    <updated>2013-07-27T23:35:02+01:00</updated>
+    <updated>2013-07-31T11:15:06+01:00</updated>
     <author>
       <name>Mark Goodyear</name>
     </author>
@@ -288,7 +288,7 @@
 &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
 &lt;p&gt;Your Pages admin section should now look something like this:
-&lt;span class="post-img"&gt;&lt;img alt="WordPress Page ID" src="img/posts/wordpress-page-id.png" /&gt;&lt;/span&gt;
+&lt;span class="post-img"&gt;&lt;img alt="WordPress Page ID" src="http://markgoodyear.com/img/posts/wordpress-page-id.png" /&gt;&lt;/span&gt;
 Now you can easily check the ID of any page. If anyone has any other (or better) methods, please let me know via the comments below or send me a &lt;a href="http://twitter.com/markgdyr"&gt;Tweet&lt;/a&gt;.&lt;/p&gt;
 </content>
   </entry>
