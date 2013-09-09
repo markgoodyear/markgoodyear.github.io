@@ -5,10 +5,96 @@
   <id>http://markgoodyear.com</id>
   <link href="http://markgoodyear.com"/>
   <link href="http://markgoodyear.com/feed.rss" rel="self"/>
-  <updated>2013-07-30T00:00:00Z</updated>
+  <updated>2013-09-09T00:00:00Z</updated>
   <author>
     <name>Mark Goodyear</name>
   </author>
+  <entry>
+    <title>Simplify form testing with Populatr</title>
+    <link rel="alternate" href="http://markgoodyear.com/2013/09/simplify-form-testing-with-populatr/"/>
+    <id>http://markgoodyear.com/2013/09/simplify-form-testing-with-populatr/</id>
+    <published>2013-09-09T00:00:00Z</published>
+    <updated>2013-09-09T16:18:28+01:00</updated>
+    <author>
+      <name>Mark Goodyear</name>
+    </author>
+    <summary type="html">&lt;p class="lead"&gt;Populatr is a JavaScript plugin that will populate any form with pre-defined data to help reduce testing time.</summary>
+    <content type="html">&lt;p class="lead"&gt;Populatr is a JavaScript plugin that will populate any form with pre-defined data to help reduce testing time.&lt;/p&gt;
+
+&lt;ul class="post-actions"&gt;
+  &lt;li&gt;&lt;a href="http://markgoodyear.com/labs/populatr"&gt;Demo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://github.com/markgoodyear/populatr/archive/master.zip"&gt;Download&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://github.com/markgoodyear/populatr"&gt;Git&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;What is Populatr?&lt;/h2&gt;
+
+&lt;p&gt;On a recent project I needed to handle multiple large forms and monitor how the data handled each step of the way. Going through the forms manually is not only tedious, but very time consuming. To overcome this, I decided to wite a small, lightweight JavaScript plugin which auto-fills form inputs based on given data.&lt;/p&gt;
+
+&lt;h2&gt;Getting started&lt;/h2&gt;
+
+&lt;p&gt;Populatr is very simple to use. To target a from, either an ID or class can be defined. For inputs (and selects) it targets the &lt;code&gt;name&lt;/code&gt; attribute. Take the following form for example:&lt;/p&gt;
+&lt;pre class="highlight html"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;div class="lineno"&gt;4&lt;/div&gt;&lt;div class="lineno"&gt;5&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="nt"&gt;&amp;lt;form&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;demo-form&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;input&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;first-name&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;input&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;last-name&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;input&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;email&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;email&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/form&amp;gt;&lt;/span&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;p&gt;To populate this form, we need to initiate Populatr and then feed in some data:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;div class="lineno"&gt;4&lt;/div&gt;&lt;div class="lineno"&gt;5&lt;/div&gt;&lt;div class="lineno"&gt;6&lt;/div&gt;&lt;div class="lineno"&gt;7&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="nx"&gt;Populatr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;init&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="s1"&gt;&amp;#39;#demo-form&amp;#39;&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;             &lt;span class="c1"&gt;// CSS selector to select the form
+&lt;/span&gt;    &lt;span class="s1"&gt;&amp;#39;first-name&amp;#39;&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Mark&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;     &lt;span class="c1"&gt;// &amp;#39;Input name&amp;#39;: &amp;#39;Input value&amp;#39;
+&lt;/span&gt;    &lt;span class="s1"&gt;&amp;#39;last-name&amp;#39;&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Goodyear&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;email&amp;#39;&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;hello@markgoodyear.com&amp;#39;&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;p&gt;We initialise Populatr with &lt;code&gt;Populatr.init()&lt;/code&gt; then pass in if it&amp;rsquo;s active using either &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;. Following this, we set the data to be used.&lt;/p&gt;
+
+&lt;p&gt;The data can be passed in as a standard JavaScript object&amp;mdash;as above&amp;mdash;or we can specify an external JSON file, keeping the form data seperate and prevent bloating template files. Using the example above, initiate Populatr with a file to use:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="nx"&gt;Populatr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;init&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;populatr.json&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;p&gt;Then &lt;code&gt;populatr.json&lt;/code&gt; would look like:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;div class="lineno"&gt;4&lt;/div&gt;&lt;div class="lineno"&gt;5&lt;/div&gt;&lt;div class="lineno"&gt;6&lt;/div&gt;&lt;div class="lineno"&gt;7&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="s2"&gt;&amp;quot;#demo-form&amp;quot;&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;first-name&amp;quot;&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Mark&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;last-name&amp;quot;&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Goodyear&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;email&amp;quot;&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;hello@markgoodyear.com&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;Note double quotes are required for JSON.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3&gt;Multiple forms&lt;/h3&gt;
+
+&lt;p&gt;Defining multiple forms is possible by passing in multiple objects:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;div class="lineno"&gt;4&lt;/div&gt;&lt;div class="lineno"&gt;5&lt;/div&gt;&lt;div class="lineno"&gt;6&lt;/div&gt;&lt;div class="lineno"&gt;7&lt;/div&gt;&lt;div class="lineno"&gt;8&lt;/div&gt;&lt;div class="lineno"&gt;9&lt;/div&gt;&lt;div class="lineno"&gt;10&lt;/div&gt;&lt;div class="lineno"&gt;11&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="nx"&gt;Populatr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;init&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="s1"&gt;&amp;#39;#form-one&amp;#39;&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="c1"&gt;// Form one data...
+&lt;/span&gt;  &lt;span class="p"&gt;},&lt;/span&gt;
+  &lt;span class="s1"&gt;&amp;#39;#form-two&amp;#39;&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="c1"&gt;// Form two data...
+&lt;/span&gt;  &lt;span class="p"&gt;},&lt;/span&gt;
+  &lt;span class="s1"&gt;&amp;#39;#form-three&amp;#39;&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="c1"&gt;// Form three data...
+&lt;/span&gt;  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;h3&gt;Input types&lt;/h3&gt;
+
+&lt;p&gt;Most input types are supported, including newer HTML5 inputs. See the &lt;a href="%= current_page.data.demo %"&gt;demo&lt;/a&gt; for the full range along with an example on populating them.&lt;/p&gt;
+
+&lt;h2&gt;Thoughts?&lt;/h2&gt;
+
+&lt;p&gt;If you have any thoughts, suggestions or issues, please leave a comment below.&lt;/p&gt;
+
+&lt;ul class="post-actions"&gt;
+  &lt;li&gt;&lt;a href="http://markgoodyear.com/labs/populatr"&gt;Demo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://github.com/markgoodyear/populatr/archive/master.zip"&gt;Download&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://github.com/markgoodyear/populatr"&gt;Git&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <title>Automating your workflow with Grunt</title>
     <link rel="alternate" href="http://markgoodyear.com/2013/07/automating-your-workflow-with-grunt/"/>
@@ -419,81 +505,6 @@ Now you can easily check the ID of any page. If anyone has any other (or better)
 &lt;/span&gt;  &lt;span class="na"&gt;message&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Hey! Your browser is unsupported. Please upgrade for the best experience.&amp;quot;&lt;/span&gt; &lt;span class="c1"&gt;// Set custom message
 &lt;/span&gt;&lt;span class="p"&gt;});&lt;/span&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
-&lt;ul class="post-actions"&gt;
-  &lt;li&gt;&lt;a href=""&gt;Demo&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=""&gt;Download&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=""&gt;Git&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>scrollUp jQuery plugin</title>
-    <link rel="alternate" href="http://markgoodyear.com/2013/01/scrollup-jquery-plugin/"/>
-    <id>http://markgoodyear.com/2013/01/scrollup-jquery-plugin/</id>
-    <published>2013-01-22T00:00:00Z</published>
-    <updated>2013-06-01T22:22:49+01:00</updated>
-    <author>
-      <name>Mark Goodyear</name>
-    </author>
-    <summary type="html">&lt;p class="lead"&gt;ScrollUp is a lightweight jQuery plugin to create a customisable &amp;ldquo;Scroll to top&amp;rdquo; feature that will work with any website, with ease.&lt;/p&gt;
-
-&lt;p&gt;</summary>
-    <content type="html">&lt;p class="lead"&gt;ScrollUp is a lightweight jQuery plugin to create a customisable &amp;ldquo;Scroll to top&amp;rdquo; feature that will work with any website, with ease.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
-
-&lt;p&gt;Recently whilst working on a client project I was required to implement a &amp;ldquo;Scroll to top&amp;rdquo; feature to make it easy for the user to get back to the top of the page. I decided to take this further and turn it into a fully customisable jQuery plugin to work with any site.&lt;/p&gt;
-
-&lt;div&gt;
-&lt;p&gt;&lt;em&gt;&lt;strong&gt;Update 08/04/2013&lt;/strong&gt;: ScrollUp updated to v1.1. &lt;a href="http://markgoodyear.com/2013/04/scrollup-jquery-plugin-updates/"&gt;Read more here.&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;ul class="post-actions"&gt;
-  &lt;li&gt;&lt;a href=""&gt;Demo&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=""&gt;Download&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=""&gt;Git&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;How to use&lt;/h2&gt;
-
-&lt;p&gt;Simply include the &lt;code&gt;jquery.scrollUp.min.js&lt;/code&gt; file and place the following in the head of your document (make sure jQuery is included):&lt;/p&gt;
-
-&lt;h3&gt;Minimum setup&lt;/h3&gt;
-&lt;pre class="highlight javascript"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
-  &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;scrollUp&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
-&lt;span class="p"&gt;});&lt;/span&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
-&lt;h3&gt;Example with default options&lt;/h3&gt;
-&lt;pre class="highlight javascript"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;div class="lineno"&gt;4&lt;/div&gt;&lt;div class="lineno"&gt;5&lt;/div&gt;&lt;div class="lineno"&gt;6&lt;/div&gt;&lt;div class="lineno"&gt;7&lt;/div&gt;&lt;div class="lineno"&gt;8&lt;/div&gt;&lt;div class="lineno"&gt;9&lt;/div&gt;&lt;div class="lineno"&gt;10&lt;/div&gt;&lt;div class="lineno"&gt;11&lt;/div&gt;&lt;div class="lineno"&gt;12&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;scrollUp&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
-    &lt;span class="na"&gt;scrollName&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;scrollUp&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;// Element ID
-&lt;/span&gt;    &lt;span class="na"&gt;topDistance&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;300&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;// Distance from top before showing element (px)
-&lt;/span&gt;    &lt;span class="na"&gt;topSpeed&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;300&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;// Speed back to top (ms)
-&lt;/span&gt;    &lt;span class="na"&gt;animation&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;fade&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;// Fade, slide, none
-&lt;/span&gt;    &lt;span class="na"&gt;animationInSpeed&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;// Animation in speed (ms)
-&lt;/span&gt;    &lt;span class="na"&gt;animationOutSpeed&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;// Animation out speed (ms)
-&lt;/span&gt;    &lt;span class="na"&gt;scrollText&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Scroll to top&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;// Text for element
-&lt;/span&gt;    &lt;span class="na"&gt;activeOverlay&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;// Set CSS color to display scrollUp active point, e.g &amp;#39;#00FFFF&amp;#39;
-&lt;/span&gt;  &lt;span class="p"&gt;});&lt;/span&gt;
-&lt;span class="p"&gt;});&lt;/span&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
-&lt;h3&gt;activeOverlay&lt;/h3&gt;
-
-&lt;p&gt;To create a visible line to help determin an ideal scroll distance from the top, assign a valid CSS colour to the &lt;code&gt;activeOverlay&lt;/code&gt; setting. This could be HEX, HSLA or RGB(A). Example: &lt;code&gt;activeOverlay: &amp;#39;#00FFFF&amp;#39;&lt;/code&gt;. &lt;a href="#"&gt;See the demo for an example&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2&gt;Fully Customisable&lt;/h2&gt;
-
-&lt;p&gt;ScrollUp is fully customisable through CSS which makes it simple to fit right into your project. Simply target the scrollUp&amp;rsquo;s generated ID in your CSS file and set your styles. Below is a basic style example:&lt;/p&gt;
-&lt;pre class="highlight css"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;div class="lineno"&gt;4&lt;/div&gt;&lt;div class="lineno"&gt;5&lt;/div&gt;&lt;div class="lineno"&gt;6&lt;/div&gt;&lt;div class="lineno"&gt;7&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="nf"&gt;#scrollUp&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="nl"&gt;bottom&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;20px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="nl"&gt;right&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;20px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="nl"&gt;padding&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;10px&lt;/span&gt; &lt;span class="m"&gt;20px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="nl"&gt;background&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;#555&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="nl"&gt;color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;#fff&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;a href="#"&gt;Check out the demo&lt;/a&gt; for more style and feature examples.&lt;/p&gt;
-
 &lt;ul class="post-actions"&gt;
   &lt;li&gt;&lt;a href=""&gt;Demo&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=""&gt;Download&lt;/a&gt;&lt;/li&gt;
