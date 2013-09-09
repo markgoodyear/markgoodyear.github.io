@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://markgoodyear.com/2013/09/simplify-form-testing-with-populatr/"/>
     <id>http://markgoodyear.com/2013/09/simplify-form-testing-with-populatr/</id>
     <published>2013-09-09T00:00:00Z</published>
-    <updated>2013-09-09T16:28:20+01:00</updated>
+    <updated>2013-09-09T21:10:16+01:00</updated>
     <author>
       <name>Mark Goodyear</name>
     </author>
@@ -29,7 +29,7 @@
 
 &lt;h2&gt;What is Populatr?&lt;/h2&gt;
 
-&lt;p&gt;On a recent project I needed to handle multiple large forms and monitor how the data handled each step of the way. Going through the forms manually is not only tedious, but very time consuming. To overcome this, I decided to wite a small, lightweight JavaScript plugin which auto-fills form inputs based on given data.&lt;/p&gt;
+&lt;p&gt;On a recent project I needed to handle multiple large forms and monitor how the data handled each step of the way. Going through the forms manually is not only tedious, but very time consuming. To overcome this I decided to write a small, lightweight JavaScript plugin which will auto-fill form inputs based on given data.&lt;/p&gt;
 
 &lt;h2&gt;Getting started&lt;/h2&gt;
 
@@ -49,7 +49,7 @@
   &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;span class="p"&gt;});&lt;/span&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
-&lt;p&gt;We initialise Populatr with &lt;code&gt;Populatr.init()&lt;/code&gt; then pass in if it&amp;rsquo;s active using either &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;. Following this, we set the data to be used. The data can be passed in as a standard JavaScript object&amp;mdash;as above&amp;mdash;or we can specify an external JSON file, keeping the form data seperate and prevent bloating template files. Using the example above, initiate Populatr with a file to use:&lt;/p&gt;
+&lt;p&gt;We initialise Populatr with &lt;code&gt;Populatr.init()&lt;/code&gt; then pass in if it&amp;rsquo;s active using either &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;. Following this, we set the data to be used. The data can be passed in as a standard JavaScript object&amp;mdash;as above&amp;mdash;or we can specify an external JSON file, keeping the form data separate and to prevent bloating template files. Using the example above, initiate Populatr with a file to use:&lt;/p&gt;
 &lt;pre class="highlight javascript"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="nx"&gt;Populatr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;init&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;populatr.json&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
 &lt;p&gt;Then &lt;code&gt;populatr.json&lt;/code&gt; would look like:&lt;/p&gt;
