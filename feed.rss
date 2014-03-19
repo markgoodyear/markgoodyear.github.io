@@ -5,10 +5,71 @@
   <id>http://markgoodyear.com</id>
   <link href="http://markgoodyear.com"/>
   <link href="http://markgoodyear.com/feed.rss" rel="self"/>
-  <updated>2014-01-19T00:00:00Z</updated>
+  <updated>2014-03-19T00:00:00Z</updated>
   <author>
     <name>Mark Goodyear</name>
   </author>
+  <entry>
+    <title>Better development environments with Vagrant</title>
+    <link rel="alternate" href="http://markgoodyear.com/2014/03/better-development-environments-with-vagrant/"/>
+    <id>http://markgoodyear.com/2014/03/better-development-environments-with-vagrant/</id>
+    <published>2014-03-19T00:00:00Z</published>
+    <updated>2014-03-19T23:18:04+00:00</updated>
+    <author>
+      <name>Mark Goodyear</name>
+    </author>
+    <summary>Having a properly configured development environment is important to any project; Vagrant does just that.</summary>
+    <content type="html">&lt;p class="lead"&gt;Having a properly configured development environment is important to any project; Vagrant does just that.&lt;/p&gt;
+
+&lt;p&gt;Before we start, I&amp;rsquo;m going to assume you are using a Mac for development, but the principles are the same if you&amp;rsquo;re using Windows. It&amp;rsquo;s worth noting Linux users may not have the issues I cover in the post.&lt;/p&gt;
+
+&lt;h2&gt;But MAMP rocks!?&lt;/h2&gt;
+
+&lt;p&gt;I&amp;rsquo;m a long term user of MAMP, and still use it if I need to quickly fire up a PHP server to test something, though it&amp;rsquo;s not without its limitations. One in particular is that everything may seem perfect on your local machine, but as soon as it&amp;rsquo;s deployed to production, things could break. Why? The main difference here would be the Operating System. As you&amp;rsquo;ll likely be deploying to a Linux server and not OSX/Windows, there may be some compatability issues to iron out. Software (such as Apache, PHP, MySQL etc.) version differences can also cause big problems. From experience, it&amp;rsquo;s best to develop on the same versions of everything to avoid any potential hiccups. The last thing you want is to be fixing unexpected bugs that appear in a different version of PHP—especially after a launch.&lt;/p&gt;
+
+&lt;p&gt;Mirroring the production environment as much as possible is an important step to ensure as little as possible can go wrong. As they say; if it can go wrong, it will.&lt;/p&gt;
+
+&lt;h2&gt;Other options&lt;/h2&gt;
+
+&lt;p&gt;Another route I tried is to use the built-in Apache on OSX, along with installing MySQL and multiple PHP versions. Whilst this freed me from MAMP, it was a fairly complicated process and came across a few issues along the way. Replicating the same process on different machines isn&amp;rsquo;t an easy task, not to mention time consuming—especially in a team where everyone would need to have the same setup. If you had two projects with two different software requirements, things start to get complicated, too. So how do we solve these issues?&lt;/p&gt;
+
+&lt;h2&gt;Meet Vagrant&lt;/h2&gt;
+
+&lt;p&gt;Vagrant solves all these issues by allowing us to create portable virtual development environments. This means you can have as many environments as you need, each configured differently to suite the project requirements. So if you need PHP 5.4 on one project and PHP 5.3 on another, Vagrant makes it easy to manage. Replicating an environment on a different machine is as simple as running &lt;code&gt;$ vagrant up&lt;/code&gt;, saving you the hard work and time of installing and configuring everything manually. Awesome!&lt;/p&gt;
+
+&lt;p&gt;Vagrant is easy to configure, so whether you need Apache or Nginx with a specific version of PHP, setting it up is a breeze.&lt;/p&gt;
+
+&lt;h3&gt;Getting started with Vagrant&lt;/h3&gt;
+
+&lt;p&gt;To get started, you&amp;rsquo;ll first need to install &lt;a href="https://www.virtualbox.org/wiki/Downloads"&gt;VirtualBox&lt;/a&gt;. Once installed, head over to &lt;a href="http://downloads.vagrantup.com/"&gt;Vagrant Downloads&lt;/a&gt; and grab the latest version.&lt;/p&gt;
+
+&lt;p&gt;I won&amp;rsquo;t go into the depths of setting up a project from scratch as there is a great &lt;a href="http://docs.vagrantup.com/v2/getting-started/index.html"&gt;getting started&lt;/a&gt; guide on the Vagrant website. I&amp;rsquo;d recommend taking a look through the documentation to familiarise yourself with Vagrant and its commands. Rather than learning about dev-ops and creating your own provisioning scripts to provision a Vagrant box, there are many tools out there to get you up and running in minutes. One of my favourites is &lt;a href="http://fideloper.github.io/Vaprobash/index.html"&gt;Vaprobash&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Vaprobash uses a collection of Bash scripts to install everything you need to set up your environment. Choosing what you need with Vaprobash is as simple as uncommenting a few lines in the provided &lt;code&gt;Vagrantfile&lt;/code&gt;, then running a &lt;code&gt;$ vagrant up&lt;/code&gt;. That&amp;rsquo;s all there is to it, you&amp;rsquo;re ready to code.&lt;/p&gt;
+
+&lt;p&gt;Another tool is &lt;a href="https://puphpet.com/"&gt;PuPHPet&lt;/a&gt;, an online GUI generator providing a wide range of options. Enter some project info, tick a couple of boxes and &lt;code&gt;$ vagrant up&lt;/code&gt;. If Vaprobash doesn&amp;rsquo;t offer everything you need, I recommend giving PuPHPet a try.&lt;/p&gt;
+
+&lt;p&gt;Both are great options to get started without needing to learn any more than what you would using MAMP. If you need any more flexibility, you can get your hands dirty with provisionging tools—such as &lt;a href="http://puppetlabs.com/"&gt;Puppet&lt;/a&gt; or &lt;a href="http://www.opscode.com/chef/"&gt;Chef&lt;/a&gt;—to completely customise your environment.&lt;/p&gt;
+
+&lt;h3&gt;Vagrant workflow&lt;/h3&gt;
+
+&lt;p&gt;A typical Vagrant workflow would be something like:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Initiate a project and &lt;code&gt;$ vagrant up&lt;/code&gt;. This starts up and configures the virtual machine first time round. Vagrant will take a short while to install everything on this first instance, so grab yourself a coffee while you wait.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;When everything has installed, fire up your favourite editor and code like a ninja.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;At the end of the day, either &lt;code&gt;$ vagrant [suspend|halt|destroy]&lt;/code&gt;. &lt;a href="http://docs.vagrantup.com/v2/cli/suspend.html"&gt;Suspend&lt;/a&gt; will effectively pause the machine, &lt;a href="http://docs.vagrantup.com/v2/cli/halt.html"&gt;halt&lt;/a&gt; will shutdown the machine, and &lt;a href="http://docs.vagrantup.com/v2/cli/destroy.html"&gt;destroy&lt;/a&gt; will completely remove all traces of the machine like it never existed. Remember to dump the database before destroying so you don&amp;rsquo;t lose it—I&amp;rsquo;ve done that far too many times! You can even store it in version control for safe-keeping. Usually you&amp;rsquo;ll only need to destroy a box when a project is complete. Halting or suspending will be fine for the duration. By doing this, &lt;code&gt;$ vagrant up&lt;/code&gt; will be much quicker as everything is already installed in the box.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2&gt;In summary&lt;/h2&gt;
+
+&lt;p&gt;Vagrant is a great way to create shareable development environments, avoiding the classic line:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;I don&amp;rsquo;t know what you&amp;rsquo;re talking about; it works fine on &lt;strong&gt;my&lt;/strong&gt; machine!&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+  </entry>
   <entry>
     <title>Getting started with gulp</title>
     <link rel="alternate" href="http://markgoodyear.com/2014/01/getting-started-with-gulp/"/>
@@ -722,7 +783,7 @@ Now you can easily check the ID of any page. If anyone has any other (or better)
     <link rel="alternate" href="http://markgoodyear.com/2013/05/static-awesomeness/"/>
     <id>http://markgoodyear.com/2013/05/static-awesomeness/</id>
     <published>2013-05-27T00:00:00Z</published>
-    <updated>2014-01-21T23:26:47+00:00</updated>
+    <updated>2014-03-19T21:48:08+00:00</updated>
     <author>
       <name>Mark Goodyear</name>
     </author>
@@ -741,7 +802,7 @@ Now you can easily check the ID of any page. If anyone has any other (or better)
 
 &lt;p&gt;Middleman is a static site site generator which includes built-in features such as Sass, Haml, CoffeeScript, Markdown, LiveReload and many more that work straight out of the box with little or no configuration needed. With the ability to create multiple blogs, this is perfect to use for a portfolio section. It&amp;rsquo;s also extensible with many &lt;a href="http://directory.middlemanapp.com/#/extensions/all"&gt;useful extensions&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;Middleman is a little more involved to get set up, requiring use of Terminal and some basic Ruby knowledge. Knowing this, and armed without any Ruby knowledge, I managed to get set up pretty quick and found it relatively painless&amp;mdash;so don&amp;rsquo;t let it put you off. There is a great &lt;a href="http://middlemanapp.com/getting-started/"&gt;walkthrough&lt;/a&gt; on the Middleman site, which explains how to install and set-up a new project.&lt;/p&gt;
+&lt;p&gt;Middleman is a little more involved to get set up, requiring use of Terminal and some basic Ruby knowledge. Knowing this, and armed without any Ruby knowledge, I managed to get set up pretty quick and found it relatively painless&amp;mdash;so don&amp;rsquo;t let it put you off. There is a great &lt;a href="http://middlemanapp.com/basics/getting-started/"&gt;walkthrough&lt;/a&gt; on the Middleman site, which explains how to install and set-up a new project.&lt;/p&gt;
 
 &lt;h3&gt;How does it work?&lt;/h3&gt;
 
@@ -760,52 +821,6 @@ Now you can easily check the ID of any page. If anyone has any other (or better)
 &lt;p&gt;There are many other static site generators, some made in PHP if you don&amp;rsquo;t fancy Ruby. Another tool to watch out for is &lt;a href="http://mixture.io"&gt;mixture.io&lt;/a&gt;. It has many similarities to Middleman, but without requiring the command line. It also runs on Windows too! I&amp;rsquo;d recommend checking it out.&lt;/p&gt;
 
 &lt;p&gt;If you don&amp;rsquo;t want to go fully static but like the idea of no databases, there&amp;rsquo;s also flat file CMS&amp;rsquo;s, which store all content in text files rather than a database. One option is &lt;a href="http://getkirby.com"&gt;Kirby&lt;/a&gt;, and another one that&amp;rsquo;s becoming increasingly popular is &lt;a href="http://statamic.com/"&gt;Statamic&lt;/a&gt;. I&amp;rsquo;ve not used either of these yet, but both look worth checking out.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>scrollUp jQuery plugin updates</title>
-    <link rel="alternate" href="http://markgoodyear.com/2013/04/scrollup-jquery-plugin-updates/"/>
-    <id>http://markgoodyear.com/2013/04/scrollup-jquery-plugin-updates/</id>
-    <published>2013-04-08T00:00:00Z</published>
-    <updated>2013-06-01T22:17:21+01:00</updated>
-    <author>
-      <name>Mark Goodyear</name>
-    </author>
-    <summary type="html">&lt;p&gt;A new option has been introduced to allow easily setting an image, rather than resorting to CSS image replacement techniques. Some under the hood optimisations and tweaks have been made, too.</summary>
-    <content type="html">&lt;p&gt;A new option has been introduced to allow easily setting an image, rather than resorting to CSS image replacement techniques. Some under the hood optimisations and tweaks have been made, too. (Thanks to NickRameau for suggestions).&lt;/p&gt;
-
-&lt;ul class="post-actions"&gt;
-  &lt;li&gt;&lt;a href=""&gt;Demo&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=""&gt;Download&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=""&gt;Git&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;Using images&lt;/h2&gt;
-
-&lt;p&gt;To use the new image feature simply add the following line to your settings (&lt;a href="http://markgoodyear.com/2013/01/scrollup-jquery-plugin/"&gt;see this post for how to install&lt;/a&gt;): &lt;code&gt;&lt;span class="opt"&gt;scrollImg&lt;/span&gt;: &lt;span class="val"&gt;true&lt;/span&gt;
-&lt;/code&gt; This will prevent any text set in &lt;code&gt;scollText&lt;/code&gt; from being visible, allowing you to set a background image in your CSS file — no image replacement techniques needed to hide the the text. Any text set in &lt;code&gt;scrollText&lt;/code&gt; will still be used as the link title.&lt;/p&gt;
-
-&lt;h3&gt;Example usage&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;JavaScript&lt;/strong&gt;&lt;/p&gt;
-&lt;pre class="highlight javascript"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;scrollUp&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
-  &lt;span class="na"&gt;scrollImg&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;
-&lt;span class="p"&gt;});&lt;/span&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;CSS&lt;/strong&gt;&lt;/p&gt;
-&lt;pre class="highlight css"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;div class="lineno"&gt;4&lt;/div&gt;&lt;div class="lineno"&gt;5&lt;/div&gt;&lt;div class="lineno"&gt;6&lt;/div&gt;&lt;div class="lineno"&gt;7&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="nf"&gt;#scrollUp&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="nl"&gt;bottom&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;20px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="nl"&gt;right&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;20px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="nl"&gt;width&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;38px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c"&gt;/* Width of image */&lt;/span&gt;
-  &lt;span class="nl"&gt;height&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;38px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c"&gt;/* Height of image */&lt;/span&gt;
-  &lt;span class="nl"&gt;background&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="sx"&gt;url(../../img/top.png)&lt;/span&gt; &lt;span class="nb"&gt;no-repeat&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
-&lt;ul class="post-actions"&gt;
-  &lt;li&gt;&lt;a href=""&gt;Demo&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=""&gt;Download&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=""&gt;Git&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 </content>
   </entry>
 </feed>
