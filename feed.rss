@@ -5,16 +5,80 @@
   <id>http://markgoodyear.com</id>
   <link href="http://markgoodyear.com"/>
   <link href="http://markgoodyear.com/feed.rss" rel="self"/>
-  <updated>2014-03-19T00:00:00Z</updated>
+  <updated>2014-04-07T00:00:00Z</updated>
   <author>
     <name>Mark Goodyear</name>
   </author>
+  <entry>
+    <title>Create an on-demand sticky header with Headhesive.js</title>
+    <link rel="alternate" href="http://markgoodyear.com/2014/04/create-an-on-demand-sticky-header-with-headhesive-js/"/>
+    <id>http://markgoodyear.com/2014/04/create-an-on-demand-sticky-header-with-headhesive-js/</id>
+    <published>2014-04-07T00:00:00Z</published>
+    <updated>2014-04-07T23:15:50+01:00</updated>
+    <author>
+      <name>Mark Goodyear</name>
+    </author>
+    <summary>Headhesive.js is a lightweight, fully customisable JavaScript plugin for creating an on-demand sticky header.</summary>
+    <content type="html">&lt;p class="lead"&gt;Headhesive.js is a lightweight, fully customisable JavaScript plugin for creating an on-demand sticky header.&lt;/p&gt;
+
+&lt;ul class="post-actions"&gt;
+  &lt;li&gt;&lt;a href=""&gt;Demo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=""&gt;Download&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=""&gt;GitHub Project&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For a recent project I needed to create a sticky header that was only visible after a certain point on the page. I found a few plugins available, some relied on jQuery, some had many extra features that weren’t necessary. Whilst jQuery isn&amp;rsquo;t always a bad thing, I was looking for a lightweight, dependency-free solution. Headhesive.js was created.&lt;/p&gt;
+
+&lt;h2&gt;What does it do?&lt;/h2&gt;
+
+&lt;p&gt;Headhesive.js creates an &lt;em&gt;on-demand&lt;/em&gt; sticky header that will appear after a specific scroll distance, or at a certain element. No dependancies and no fancy extra frills to get in your way. It works exactly how you tell it.&lt;/p&gt;
+
+&lt;h2&gt;How to use&lt;/h2&gt;
+
+&lt;p&gt;First of all you&amp;rsquo;ll need to include the &lt;code&gt;headhesive.min.js&lt;/code&gt; file in your footer, then create an instance using any element:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;header&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;Headhesive&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.header&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;p&gt;This instantiates Headhesive.js on the &lt;code&gt;.header&lt;/code&gt; element, using the default options—&lt;em&gt;see the &lt;a href="https://github.com/markgoodyear/headhesive.js/blob/master/README.md#options"&gt;readme&lt;/a&gt; for more info on options&lt;/em&gt;. Upon instantiating, the &lt;code&gt;.header&lt;/code&gt; element will be cloned with the class &lt;code&gt;.headhesive--clone&lt;/code&gt;. In this example, the cloned element will look like this:&lt;/p&gt;
+&lt;pre class="highlight html"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;header headhesive--clone&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="c"&gt;&amp;lt;!-- header elements will be cloned inside --&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;p&gt;No styles are injected via the plugin, keeping the plugin lightweight and as user customisable as possible. To create a basic hide/show effect we need to add some CSS magic to the cloned element:&lt;/p&gt;
+&lt;pre class="highlight css"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;div class="lineno"&gt;4&lt;/div&gt;&lt;div class="lineno"&gt;5&lt;/div&gt;&lt;div class="lineno"&gt;6&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="nc"&gt;.headhesive--clone&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="py"&gt;postion&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;fixed&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c"&gt;/* fix the element */&lt;/span&gt;
+  &lt;span class="nl"&gt;top&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c"&gt;/* make sure it&amp;#39;s at the top */&lt;/span&gt;
+  &lt;span class="nl"&gt;transform&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;translateY&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;-100&lt;/span&gt;&lt;span class="err"&gt;%&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c"&gt;/* move it off screen */&lt;/span&gt;
+  &lt;span class="nl"&gt;transition&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;all&lt;/span&gt; &lt;span class="n"&gt;300ms&lt;/span&gt; &lt;span class="n"&gt;ease-in-out&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c"&gt;/* add animation */&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;p&gt;We shift the element off-screen by setting the &lt;code&gt;transform: translateY&lt;/code&gt; property to &lt;code&gt;-100%&lt;/code&gt;. Alternatively, we could use a negative margin to move the element off-screen. I prefer &lt;code&gt;transform&lt;/code&gt; as there is no need to define any heights, and it works perfectly in IE9.&lt;/p&gt;
+
+&lt;p&gt;When reaching the target scroll distance, the class &lt;code&gt;.headhesive--stick&lt;/code&gt; is added. We can use this and create some styles to show the element:&lt;/p&gt;
+&lt;pre class="highlight css"&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl"&gt;&lt;div class="lineno"&gt;1&lt;/div&gt;&lt;div class="lineno"&gt;2&lt;/div&gt;&lt;div class="lineno"&gt;3&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;span class="nc"&gt;.headhesive--stick&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nl"&gt;transform&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;translateY&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="err"&gt;%&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c"&gt;/* move it back on screen */&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/pre&gt;
+&lt;p&gt;We now have an on-demand sticky header!&lt;/p&gt;
+
+&lt;h2&gt;Further customisation&lt;/h2&gt;
+
+&lt;p&gt;Please check out the &lt;a href="https://github.com/markgoodyear/headhesive.js/"&gt;Headhesive.js project on GitHub&lt;/a&gt; for an always up-to-date guide on the options, methods, along with a downloadable demo.&lt;/p&gt;
+
+&lt;p&gt;If you have any questions or find an issue, please leave a comment below, or you can find me on &lt;a href="https://markgoodyear.com/markgdyr"&gt;Twitter&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ul class="post-actions"&gt;
+  &lt;li&gt;&lt;a href=""&gt;Demo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=""&gt;Download&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=""&gt;GitHub Project&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <title>Better development environments with Vagrant</title>
     <link rel="alternate" href="http://markgoodyear.com/2014/03/better-development-environments-with-vagrant/"/>
     <id>http://markgoodyear.com/2014/03/better-development-environments-with-vagrant/</id>
     <published>2014-03-19T00:00:00Z</published>
-    <updated>2014-03-19T23:18:04+00:00</updated>
+    <updated>2014-04-03T23:37:21+01:00</updated>
     <author>
       <name>Mark Goodyear</name>
     </author>
@@ -75,7 +139,7 @@
     <link rel="alternate" href="http://markgoodyear.com/2014/01/getting-started-with-gulp/"/>
     <id>http://markgoodyear.com/2014/01/getting-started-with-gulp/</id>
     <published>2014-01-19T00:00:00Z</published>
-    <updated>2014-01-28T21:13:28+00:00</updated>
+    <updated>2014-04-03T23:37:21+01:00</updated>
     <author>
       <name>Mark Goodyear</name>
     </author>
@@ -416,7 +480,7 @@
     <link rel="alternate" href="http://markgoodyear.com/2013/09/simplify-form-testing-with-populatr/"/>
     <id>http://markgoodyear.com/2013/09/simplify-form-testing-with-populatr/</id>
     <published>2013-09-09T00:00:00Z</published>
-    <updated>2013-10-23T21:43:30+01:00</updated>
+    <updated>2014-04-03T23:37:21+01:00</updated>
     <author>
       <name>Mark Goodyear</name>
     </author>
@@ -500,7 +564,7 @@
     <link rel="alternate" href="http://markgoodyear.com/2013/07/automating-your-workflow-with-grunt/"/>
     <id>http://markgoodyear.com/2013/07/automating-your-workflow-with-grunt/</id>
     <published>2013-07-30T00:00:00Z</published>
-    <updated>2013-10-23T21:43:30+01:00</updated>
+    <updated>2014-04-03T23:37:21+01:00</updated>
     <author>
       <name>Mark Goodyear</name>
     </author>
@@ -727,7 +791,7 @@
     <link rel="alternate" href="http://markgoodyear.com/2013/07/display-page-id-wordpress-admin-area/"/>
     <id>http://markgoodyear.com/2013/07/display-page-id-wordpress-admin-area/</id>
     <published>2013-07-09T00:00:00Z</published>
-    <updated>2013-10-23T21:43:30+01:00</updated>
+    <updated>2014-04-03T23:37:21+01:00</updated>
     <author>
       <name>Mark Goodyear</name>
     </author>
@@ -776,51 +840,6 @@
 &lt;p&gt;Your Pages admin section should now look something like this:
 &lt;span class="post-img"&gt;&lt;img alt="WordPress Page ID" src="http://markgoodyear.com/img/posts/wordpress-page-id.png" /&gt;&lt;/span&gt;
 Now you can easily check the ID of any page. If anyone has any other (or better) methods, please let me know via the comments below or send me a &lt;a href="http://twitter.com/markgdyr"&gt;Tweet&lt;/a&gt;.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Static Awesomeness</title>
-    <link rel="alternate" href="http://markgoodyear.com/2013/05/static-awesomeness/"/>
-    <id>http://markgoodyear.com/2013/05/static-awesomeness/</id>
-    <published>2013-05-27T00:00:00Z</published>
-    <updated>2014-03-19T21:48:08+00:00</updated>
-    <author>
-      <name>Mark Goodyear</name>
-    </author>
-    <summary type="html">&lt;p class="lead"&gt;Remember the days of no databases and just pure HTML files? They had many advantages, however managing content and templates isn&amp;rsquo;t ideal. Enter static site generators.&lt;/p&gt;
-
-&lt;p&gt;</summary>
-    <content type="html">&lt;p class="lead"&gt;Remember the days of no databases and just pure HTML files? They had many advantages, however managing content and templates isn&amp;rsquo;t ideal. Enter static site generators.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
-
-&lt;p&gt;Recently, I was all set for a re-design in WordPress when I came across static site generator, Jekyll, which GitHub uses to generate its static pages for repositories. Because it uses no databases, &lt;em&gt;everything&lt;/em&gt; can be stored in version control. Awesome.&lt;/p&gt;
-
-&lt;p&gt;Jekyll is primarily for blogging, however I wanted the ability to expand in the future should I feel the need to&amp;mdash;perhaps by adding on a portfolio section or any other dynamic content types. I then stumbled across &lt;a href="http://middlemanapp.com"&gt;Middleman&lt;/a&gt;, which is like a suped up Jekyll.&lt;/p&gt;
-
-&lt;h2&gt;Who&amp;rsquo;s the Middleman?&lt;/h2&gt;
-
-&lt;p&gt;Middleman is a static site site generator which includes built-in features such as Sass, Haml, CoffeeScript, Markdown, LiveReload and many more that work straight out of the box with little or no configuration needed. With the ability to create multiple blogs, this is perfect to use for a portfolio section. It&amp;rsquo;s also extensible with many &lt;a href="http://directory.middlemanapp.com/#/extensions/all"&gt;useful extensions&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Middleman is a little more involved to get set up, requiring use of Terminal and some basic Ruby knowledge. Knowing this, and armed without any Ruby knowledge, I managed to get set up pretty quick and found it relatively painless&amp;mdash;so don&amp;rsquo;t let it put you off. There is a great &lt;a href="http://middlemanapp.com/basics/getting-started/"&gt;walkthrough&lt;/a&gt; on the Middleman site, which explains how to install and set-up a new project.&lt;/p&gt;
-
-&lt;h3&gt;How does it work?&lt;/h3&gt;
-
-&lt;p&gt;It&amp;rsquo;s simple. My site has two folders: &lt;code&gt;source&lt;/code&gt; and &lt;code&gt;build&lt;/code&gt;. All my templates/Sass files are in the &lt;code&gt;source&lt;/code&gt; folder, which are then compiled into flat HTML and CSS files in the &lt;code&gt;build&lt;/code&gt; folder when I&amp;rsquo;m ready to deploy. I then deploy the &lt;code&gt;build&lt;/code&gt; folder to my server and that&amp;rsquo;s it. No database synching to worry about.&lt;/p&gt;
-
-&lt;h2&gt;Why Static?&lt;/h2&gt;
-
-&lt;p&gt;Static sites have many benefits, such as being super fast due to no querying databases or generating dynamic pages. As mentioned, being able to store the whole site&amp;mdash;including content&amp;mdash;in version control is awesome.&lt;/p&gt;
-
-&lt;p&gt;Being static HTML files means you can host pretty much anywhere. For instance you can use &lt;a href="http://github.com"&gt;GitHub&lt;/a&gt; to host static HTML sites for free, which works great when using Git.&lt;/p&gt;
-
-&lt;p&gt;There&amp;rsquo;s also less security issues with static files too—I&amp;rsquo;m sure anyone who&amp;rsquo;s dealt with WordPress (and perhaps other database driven CMS&amp;rsquo;s) will be thankful of.&lt;/p&gt;
-
-&lt;h2&gt;Other options&lt;/h2&gt;
-
-&lt;p&gt;There are many other static site generators, some made in PHP if you don&amp;rsquo;t fancy Ruby. Another tool to watch out for is &lt;a href="http://mixture.io"&gt;mixture.io&lt;/a&gt;. It has many similarities to Middleman, but without requiring the command line. It also runs on Windows too! I&amp;rsquo;d recommend checking it out.&lt;/p&gt;
-
-&lt;p&gt;If you don&amp;rsquo;t want to go fully static but like the idea of no databases, there&amp;rsquo;s also flat file CMS&amp;rsquo;s, which store all content in text files rather than a database. One option is &lt;a href="http://getkirby.com"&gt;Kirby&lt;/a&gt;, and another one that&amp;rsquo;s becoming increasingly popular is &lt;a href="http://statamic.com/"&gt;Statamic&lt;/a&gt;. I&amp;rsquo;ve not used either of these yet, but both look worth checking out.&lt;/p&gt;
 </content>
   </entry>
 </feed>
