@@ -1,0 +1,18 @@
+/*
+ * Social/profile brands
+ */
+$profiles: (
+  twitter: #00acee,
+  dribbble:   #ea4c89,
+  linkedin:   #0e76a8,
+  github:   #171515,
+  "500px":   #02adea,
+  flickr:   #0063dc,
+  instagram:   #634d40
+);
+
+@each $profile, $color in $profiles {
+  .profile--#{$profile}       { color: $color !important; }
+  .profile--#{$profile}:hover { color: #000 !important; }
+
+}

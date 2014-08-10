@@ -1,0 +1,21 @@
+a {
+  &,
+  &:visited {
+    text-decoration: none;
+    color: palette(primary);
+    transition: all .3s ease-in-out;
+  }
+}
+
+a:not(.nav__link):not(.btn) {
+  &,
+  &:visited {
+    border-bottom: 2px solid rgba(255,255,255,0);
+  }
+
+  &:active,
+  &:hover,
+  &:focus {
+    border-bottom-color: palette(primary);
+  }
+}

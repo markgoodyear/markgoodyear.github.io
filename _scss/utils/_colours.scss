@@ -1,0 +1,40 @@
+/*--------------------------------------------------*\
+  Utils/Colours
+\*--------------------------------------------------*/
+
+$palettes: (
+
+  // Primary
+  primary: (
+    // base: #c95a5d,
+    // base: #3498db,
+    base: #2980b9,
+    dark: #2275AB,
+    light: #328CC7
+  ),
+
+  // Secondary
+  secondary: (
+    base: #273B47,
+    // 273B47
+  ),
+
+  // Accent
+  accent: (
+    base: #992A2D,
+  ),
+
+  // Grey
+  grey: (
+    base: #525252,
+    xx-light: #f5f5f5,
+    x-light: #eee,
+    light: #ccc,
+    mid-light: #aaa,
+    mid-dark: #777,
+    dark: #444,
+    x-dark: #111,
+    black: #000
+  ),
+);
+

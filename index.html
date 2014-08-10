@@ -1,0 +1,26 @@
+---
+layout: default
+active: home
+---
+
+<section class="intro  section--pad">
+  <h1>Hi, I'm Mark Goodyear.</h1>
+</section>
+
+<section class="posts  section--pad">
+  <h2 class="section-title">Latest Posts</h2>
+
+  {% include post-list.html limit=5 collection=site.posts %}
+
+  <a href="/blog" class="btn">View all posts &rarr;</a>
+</section>
+
+<!-- <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p> -->
+
+<section class="projects  section--pad">
+  <h2 class="section-title">Latest Projects</h2>
+
+  {% include post-list.html limit=5 collection=site.projects %}
+
+  <a href="/projects" class="btn">View all projects &rarr;</a>
+</section>

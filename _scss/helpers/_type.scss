@@ -1,0 +1,21 @@
+/**
+ * Text alignment
+ */
+.text--left       { text-align: left   !important; }
+.text--center     { text-align: center !important; }
+.text--right      { text-align: right  !important; }
+
+/**
+ * Text transforms
+ */
+.text--upper      { text-transform: uppercase !important; }
+.text--lower      { text-transform: lowercase !important; }
+.text--capitalize { text-transform: capitalize !important; }
+
+
+/**
+ * Font weights
+ */
+.weight--light    { font-weight: 300 !important; }
+.weight--normal   { font-weight: 400 !important; }
+.weight--semibold { font-weight: 600 !important; }

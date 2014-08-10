@@ -1,0 +1,35 @@
+---
+layout: page
+title: "Blog"
+active: blog
+---
+
+<section class="blog">
+
+  <ul class="post-list">
+    {% for post in paginator.posts %}
+      <li class="post-list__item">
+        <h2 class="post-list__title  gamma">
+          <a class="post-list__link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        </h2>
+        <span class="post-list__meta  post__meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <!-- Pagination -->
+  <div class="pagination callout text--center">
+    {% if paginator.previous_page %}
+      <a href="{{ paginator.previous_page_path | replace: 'index.html', '' }}" class="pagination__previous">&larr;</a>
+    {% else %}
+      <span class="pagination__previous  pagination--disabled">&larr;</span>
+    {% endif %}
+    <span class="pagination__page">{{ paginator.page }} of {{ paginator.total_pages }}</span>
+    {% if paginator.next_page %}
+      <a href="{{ paginator.next_page_path }}" class="pagination__next">&rarr;</a>
+    {% else %}
+      <span class="pagination__next  pagination--disabled">&rarr;</span>
+    {% endif %}
+  </div>
+
+</section>

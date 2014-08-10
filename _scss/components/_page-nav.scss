@@ -1,0 +1,25 @@
+.nav {
+
+  ul {
+    margin-bottom: 0;
+  }
+
+  li {
+    @include media($large) {
+      display: inline-block;
+      width: 33.333333%;
+      font-size: rem(16px);
+    }
+  }
+
+  &__link {
+    display: block;
+    padding: rem($base-spacing-unit--half) 0;
+    border-bottom: 1px solid palette(primary, light);
+
+    &.nav__active,
+    &:hover {
+      background: palette(primary, light);
+    }
+  }
+}

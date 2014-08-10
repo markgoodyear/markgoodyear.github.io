@@ -1,0 +1,29 @@
+.post-actions {
+  @include clearfix;
+  // font-family: $font-secondary;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    @include span-columns(4);
+    text-align: center;
+  }
+
+  a {
+    display: block;
+    padding: rem(14) 0;
+    // border: 2px solid palette(primary);
+    // border-radius: 3px;
+    width: 100%;
+    height: 100%;
+
+    &:hover {
+      // color: #fff;
+      // background: palette(primary);
+    }
+  }
+}

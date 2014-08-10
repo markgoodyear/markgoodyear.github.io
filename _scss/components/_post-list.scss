@@ -1,0 +1,17 @@
+.post-list {
+  list-style: none;
+  margin-left: 0;
+
+  &__item {
+    margin-bottom: rem($base-spacing-unit);
+  }
+
+  &__title {
+    margin-bottom: rem(5px);
+  }
+}
+
+.post__meta {
+  // font-style: italic;
+  color: palette(grey, mid-dark);
+}

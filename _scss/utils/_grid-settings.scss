@@ -1,0 +1,14 @@
+/*--------------------------------------------------*\
+  Utils/Grid Settings
+\*--------------------------------------------------*/
+
+$column: 48px;
+$gutter: 24px;
+$grid-columns: 12;
+$max-width: 920px;
+
+$xxlarge: new-breakpoint(max-width 1280px 12);
+$xlarge:  new-breakpoint(max-width 960px  12);
+$large:   new-breakpoint(max-width 760px  12);
+$medium:  new-breakpoint(max-width 540px  12);
+$small:   new-breakpoint(max-width 320px  12);

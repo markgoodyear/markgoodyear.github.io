@@ -1,0 +1,17 @@
+.site-footer {
+  @include font-size(15px);
+  position: relative;
+  padding: rem($base-spacing-unit--half);
+  margin-left: rem($sidebar-width);
+  text-align: center;
+  color: palette(grey, mid-dark);
+
+  @include media($large) {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  a {
+    color: palette(grey, x-dark);
+  }
+}

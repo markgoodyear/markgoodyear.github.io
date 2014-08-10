@@ -1,0 +1,82 @@
+@include headings(1, 6) {
+  color: #444;
+  margin-top: $base-spacing-unit;
+  margin-bottom: $base-spacing-unit--half;
+  font-family: $font-secondary;
+  font-weight: 400;
+}
+
+h1, .alpha {
+  @include font-size($h1-size);
+  // color: palette(primary);
+  // font-weight: 600;
+  @include media($large) {
+    @include font-size(42px, false);
+  }
+}
+
+h2, .beta {
+  // Adjust this heading, looked odd.
+  @include font-size($h2-size, false);
+  line-height: 1.2;
+}
+
+h3, .gamma {
+  @include font-size($h3-size);
+}
+
+h4, .delta {
+  @include font-size($h4-size);
+}
+
+h5, .epsilon {
+  @include font-size($h5-size);
+}
+
+h6, .zeta {
+  @include font-size($h6-size);
+}
+
+
+/**
+ * Big type for use in heroes, promos, etc.
+ */
+.giga {
+  @include font-size($giga-size);
+}
+
+.mega {
+  @include font-size($mega-size);
+}
+
+.kilo {
+  @include font-size($kilo-size);
+}
+
+
+/**
+ * A series of classes for setting tiny type; for use in smallprint etc.
+ */
+.smallprint,
+.milli {
+  @include font-size($milli-size);
+}
+
+.micro {
+  @include font-size($micro-size);
+}
+
+.lead {
+  @include font-size(32px, false);
+  line-height: 1.2;
+  color: palette(grey, dark);
+  // font-family: $font-secondary;
+  // font-weight: 100;
+  // font-style: italic;
+}
+
+blockquote {
+  border-left: 3px solid palette(primary);
+  font-style: italic;
+  padding-left: rem($base-spacing-unit);
+}

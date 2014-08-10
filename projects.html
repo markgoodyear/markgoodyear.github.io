@@ -1,0 +1,24 @@
+---
+layout: page
+title: Projects
+permalink: /projects/
+active: projects
+---
+
+<section class="projects">
+  <ul class="post-list">
+    {% for post in site.projects reversed %}
+      <li class="post-list__item">
+        <h2 class="post-list__title  gamma">
+          <a class="post-list__link" href="{{ post.labs | prepend: site.url }}">{{ post.title }}</a>
+        </h2>
+        <span class="post-list__meta  post__meta">{{ post.excerpt }}</span>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+
+
+<div class="callout text--center">
+  View more projects on <a href="https://github.com/markgoodyear?tab=repositories">GitHub &rarr;</a>
+</div>

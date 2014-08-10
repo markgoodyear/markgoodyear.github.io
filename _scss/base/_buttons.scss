@@ -1,0 +1,23 @@
+%btn,
+.btn {
+  @include font-size(20px, false);
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  margin: 0;
+  border: none;
+  cursor: pointer;
+  overflow: visible;
+  border-radius: 3px;
+  border: 2px solid palette(primary);
+  padding: $base-spacing-unit--half $base-spacing-unit;
+  text-decoration: none;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: #fff;
+    background-color: palette(primary);
+
+  }
+}

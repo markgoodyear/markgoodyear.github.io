@@ -1,0 +1,30 @@
+# Site settings
+title: "Mark Goodyear — Front-end developer and designer"
+email: hello@markgoodyear.com
+description: "I'm Mark Goodyear, a front-end developer and designer. Creative director at Big Bite Creative."
+baseurl: ""
+url: "http://markgoodyear.com"
+twitter_username: markgdyr
+github_username:  markgoodyear
+
+# Pagination
+paginate: 10
+paginate_path: "/blog/page:num"
+
+# Collections
+collections:
+  projects:
+    title: Projects
+    output: false
+    permalink: /projects/:path/
+
+# Permalinks
+permalink: :year/:month/:title/
+
+# Kramdown
+markdown: kramdown
+
+# Sass set up
+sass:
+  sass_dir: _scss
+  style: :compressed

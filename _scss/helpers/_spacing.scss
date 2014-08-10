@@ -1,0 +1,86 @@
+/**
+ * Guide:
+ * `.(m|p) (t|r|b|l|h|v) (-|+|0)` = (margin/padding) (top/right/bottom/left/horizontal/vertical) (less/more/none)
+ */
+
+
+/**
+ * Margins
+ */
+
+// Standard margin
+// .m   { margin:        $base-spacing-unit !important; }
+.mt  { margin-top:    $base-spacing-unit !important; }
+.mr  { margin-right:  $base-spacing-unit !important; }
+.mb  { margin-bottom: $base-spacing-unit !important; }
+.ml  { margin-left:   $base-spacing-unit !important; }
+.mh  { margin-top:    $base-spacing-unit !important; margin-bottom: $base-spacing-unit !important; }
+.mv  { margin-right:  $base-spacing-unit !important; margin-left:   $base-spacing-unit !important; }
+
+// Double margin
+.m\+  { margin:        $base-spacing-unit--double !important; }
+.mt\+ { margin-top:    $base-spacing-unit--double !important; }
+.mr\+ { margin-right:  $base-spacing-unit--double !important; }
+.mb\+ { margin-bottom: $base-spacing-unit--double !important; }
+.ml\+ { margin-left:   $base-spacing-unit--double !important; }
+.mh\+ { margin-top:    $base-spacing-unit--double !important; margin-bottom: $base-spacing-unit--double !important; }
+.mb\+ { margin-right:  $base-spacing-unit--double !important; margin-left:   $base-spacing-unit--double !important; }
+
+// Half margin
+.m-  { margin:        $base-spacing-unit--half !important; }
+.mt- { margin-top:    $base-spacing-unit--half !important; }
+.mr- { margin-right:  $base-spacing-unit--half !important; }
+.mb- { margin-bottom: $base-spacing-unit--half !important; }
+.ml- { margin-left:   $base-spacing-unit--half !important; }
+.mh- { margin-top:    $base-spacing-unit--half !important; margin-bottom: $base-spacing-unit--half !important; }
+.mb- { margin-right:  $base-spacing-unit--half !important; margin-left:   $base-spacing-unit--half !important; }
+
+// Zero margin
+.m0  { margin:        0 !important; }
+.mt0 { margin-top:    0 !important; }
+.mr0 { margin-right:  0 !important; }
+.mb0 { margin-bottom: 0 !important; }
+.ml0 { margin-left:   0 !important; }
+.mh0 { margin-top:    0 !important; margin-bottom: 0 !important; }
+.mv0 { margin-right:  0 !important; margin-left:   0 !important; }
+
+
+/**
+ * Padding
+ */
+
+// Base padding
+// .p   { padding:        $base-spacing-unit !important; }
+.pt  { padding-top:    $base-spacing-unit !important; }
+.pr  { padding-right:  $base-spacing-unit !important; }
+.pb  { padding-bottom: $base-spacing-unit !important; }
+.pl  { padding-left:   $base-spacing-unit !important; }
+.ph  { padding-top:    $base-spacing-unit !important; padding-bottom: $base-spacing-unit !important; }
+.pv  { padding-right:  $base-spacing-unit !important; padding-left:   $base-spacing-unit !important; }
+
+// Double padding
+.p\+  { padding:        $base-spacing-unit--double !important; }
+.pt\+ { padding-top:    $base-spacing-unit--double !important; }
+.pr\+ { padding-right:  $base-spacing-unit--double !important; }
+.pb\+ { padding-bottom: $base-spacing-unit--double !important; }
+.pl\+ { padding-left:   $base-spacing-unit--double !important; }
+.ph\+ { padding-top:    $base-spacing-unit--double !important; padding-bottom: $base-spacing-unit--double !important; }
+.pv\+ { padding-right:  $base-spacing-unit--double !important; padding-left:   $base-spacing-unit--double !important; }
+
+// Half padding
+.p-  { padding:        $base-spacing-unit--half !important; }
+.pt- { padding-top:    $base-spacing-unit--half !important; }
+.pr- { padding-right:  $base-spacing-unit--half !important; }
+.pb- { padding-bottom: $base-spacing-unit--half !important; }
+.pl- { padding-left:   $base-spacing-unit--half !important; }
+.ph- { padding-top:    $base-spacing-unit--half !important; padding-bottom: $base-spacing-unit--half !important; }
+.pv- { padding-right:  $base-spacing-unit--half !important; padding-left:   $base-spacing-unit--half !important; }
+
+// Zero padding
+.p0  { padding:        0 !important; }
+.pt0 { padding-top:    0 !important; }
+.pr0 { padding-right:  0 !important; }
+.pb0 { padding-bottom: 0 !important; }
+.pl0 { padding-left:   0 !important; }
+.ph0 { padding-top:    0 !important; padding-bottom: 0 !important; }
+.pv0 { padding-right:  0 !important; padding-left:   0 !important; }

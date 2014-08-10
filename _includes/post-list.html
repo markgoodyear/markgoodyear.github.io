@@ -1,0 +1,23 @@
+<ul class="post-list">
+
+  {% for post in include.collection limit: include.limit %}
+
+    <li class="post-list__item">
+      <h2 class="post-list__title  gamma">
+      {% if include.collection == site.posts %}
+        <a class="post-list__link" href="{{ post.url | prepend: site.url }}">{{ post.title }}</a>
+      {% elsif include.collection == site.projects %}
+        <a class="post-list__link" href="{{ post.labs | prepend: site.url }}">{{ post.title }}</a>
+      {% endif %}
+
+      </h2>
+
+    {% if include.collection == site.posts %}
+      <span class="post-list__meta  post__meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+    {% elsif include.collection == site.projects %}
+      <span class="post-list__meta  post__meta">{{ post.excerpt }}</span>
+    {% endif %}
+
+    </li>
+  {% endfor %}
+</ul>

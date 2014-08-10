@@ -1,0 +1,52 @@
+/*--------------------------------------------------*\
+  Utils/Defaults
+\*--------------------------------------------------*/
+
+// Font stacks
+$font-primary:               "freight-sans-pro",  Helvetica, Arial, sans-serif;
+$font-secondary:             "adelle",  Helvetica, Arial, sans-serif;
+$font-mono:                  "source-code-pro", Consolas, "Liberation Mono", Menlo, Courier, monospace;;
+
+// Base font sizes
+$base-font-size:             22px !default;
+$base-line-height:           34px !default;
+
+// Big sizes
+$giga-size:                  60px !default;
+$mega-size:                  42px !default;
+$kilo-size:                  36px !default;
+
+// Heading sizes
+$h1-size:                    52px!default; // .alpha
+$h2-size:                    36px!default; // .beta
+$h3-size:                    28px!default; // .gamma
+$h4-size:                    24px!default; // .delta
+$h5-size:                    22px!default; // .epsilon
+$h6-size:                    18px!default; // .zeta
+
+// Small sizes
+$milli-size:                 14px !default;
+$micro-size:                 12px !default;
+
+// For Bourbons rem() function
+$em-base:                    $base-font-size;
+
+
+/**
+ * Spacing for vertical rhythm based off the line-height
+ */
+$base-spacing-unit:          $base-line-height !default;
+$base-spacing-unit--double:  round($base-spacing-unit * 2) !default;
+$base-spacing-unit--half:    round($base-spacing-unit / 2) !default;
+$base-spacing-unit--quarter: round($base-spacing-unit / 4) !default;
+
+// Calc line-height ratio (e.g 16px/24px = 1.5)
+$line-height-ratio:    $base-line-height / $base-font-size;
+
+
+/**
+ * Globals
+ */
+$global-radius:  4px;
+$sidebar-width:  320px;
+$sidebar-width--narrow: 280px;

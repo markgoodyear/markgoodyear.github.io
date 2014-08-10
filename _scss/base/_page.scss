@@ -1,0 +1,86 @@
+/**
+ * border-box as default
+ */
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
+
+/**
+ * Where `margin-bottom` is concerned, this value will be the same as the
+ * base line-height. This allows us to keep a consistent vertical rhythm.
+ */
+h1, h2, h3, h4, h5, h6, hgroup,
+ul, ol, dl,
+blockquote, p, address,
+table,
+fieldset, figure,
+pre,
+%margin-bottom {
+  margin-bottom: $base-spacing-unit;
+  margin-bottom: ($base-spacing-unit / $base-font-size) * 1rem;
+}
+
+
+/**
+ * Global
+ */
+html {
+  overflow-y: scroll;
+  min-height: 100%;
+  font: #{($base-font-size/16px)*1rem}/#{$line-height-ratio} $font-primary;
+  color: palette(grey);
+  background-color: #fafafa;
+  -webkit-font-smoothing: antialiased;
+
+  @include media($xlarge) {
+    font-size: 1.2rem;
+  }
+}
+
+
+/**
+ * Container set up
+ */
+.container {
+  @include outer-container;
+  padding: 0 rem(40px);
+
+  @include media($large) {
+    padding: 0 rem(20px);
+  }
+}
+
+/**
+ * Content
+ */
+.content {
+  margin-left: rem($sidebar-width);
+  padding-top: rem($base-spacing-unit--half);
+  background-color: #fff;
+
+  @include media($large) {
+    margin-left: 0;
+  }
+}
+
+/**
+ * Lists
+ */
+.list-bare {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul,
+ol {
+  margin-left: rem($base-spacing-unit);
+}
+
+/**
+ * Images
+ */
+img {
+  max-width: 100%;
+}
