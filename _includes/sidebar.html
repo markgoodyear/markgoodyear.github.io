@@ -1,7 +1,7 @@
 <aside class="sidebar">
   <div class="profile">
     <a href="/">
-      <img class="profile__img" src="https://pbs.twimg.com/profile_images/1599879402/twitter.png">
+      <img class="profile__img" src="{{ '/images/me.png' | prepend: site.url }}">
     </a>
     <div class="profile__detail">
       Creative director and front&hyphen;end developer <a href="http://bigbitecreative.com">@bigbitecreative</a>
@@ -14,13 +14,13 @@
   <nav class="nav">
     <ul class="list-bare">
       <li>
-        <a class="nav__link{% if page.active == "blog" or page.type == "post" %} nav__active{% endif %}" href="{{ '/blog/' | prepend: site.baseurl }}">Blog</a>
+        <a class="nav__link{% if page.active == "blog" or page.type == "post" %} nav__active{% endif %}" href="{{ '/blog/' | prepend: site.url }}">Blog</a>
       <!-- </li> -->
       <li>
-        <a class="nav__link{% if page.active == "projects" %} nav__active{% endif %}" href="{{ '/projects/' | prepend: site.baseurl }}">Projects</a>
+        <a class="nav__link{% if page.active == "projects" %} nav__active{% endif %}" href="{{ '/projects/' | prepend: site.url }}">Projects</a>
       <!-- </li> -->
       <li>
-        <a class="nav__link{% if page.active == "contact" %} nav__active{% endif %}" href="{{ '/contact/' | prepend: site.baseurl }}">Contact</a>
+        <a class="nav__link{% if page.active == "contact" %} nav__active{% endif %}" href="{{ '/contact/' | prepend: site.url }}">Contact</a>
       <!-- </li> -->
     </ul>
   </nav>
