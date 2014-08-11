@@ -9,7 +9,8 @@ date: 2014-01-19
 <div class="callout  callout--info  callout--small">
   <ul class="list-bare">
     <li><em>Updated Jan 28th, 2014 to reflect the advancement of gulp</em></li>
-    <li><em>Updated Apr 21st, 2014 to utilise updated gulp-livereload</em></li>
+    <li><em>Updated Apr 21st, 2014 to utilise updated `gulp-livereload`</em></li>
+    <li><em>Updated Aug 11th, 2014 Using `del` instead of `gulp-clean`, updated `gulp-livereload`</em></li>
   </ul>
 </div>
 
@@ -97,10 +98,9 @@ We are going to install some plugins to achieve the following tasks:
 - Uglify *([gulp-uglify](https://github.com/terinjokes/gulp-uglify))*
 - Compress images *([gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin))*
 - LiveReload *([gulp-livereload](https://github.com/vohof/gulp-livereload))*
-- Clean files for a clean build *([gulp-clean](https://github.com/peter-vilja/gulp-clean))*
 - Caching of images so only changed images are compressed *([gulp-cache](https://github.com/jgable/gulp-cache/))*
 - Notify of changes *([gulp-notify](https://github.com/mikaelbr/gulp-notify))*
-
+- Clean files for a clean build *([del](https://www.npmjs.org/package/del))*
 
 To install these plugins, run the following command:
 
@@ -124,11 +124,11 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     imagemin = require('gulp-imagemin'),
     rename = require('gulp-rename'),
-    clean = require('gulp-clean'),
     concat = require('gulp-concat'),
     notify = require('gulp-notify'),
     cache = require('gulp-cache'),
-    livereload = require('gulp-livereload');
+    livereload = require('gulp-livereload'),
+    del = require('del');
 {% endhighlight %}
 
 Phew! That seems a lot more work than Grunt, right? Gulp plugins are slightly different from Grunt plugins—they are designed to do one thing and one thing well. An example; Grunt's `imagemin` uses caching to avoid re-compressing images that are already compressed.  With gulp, this would be done with a cache plugin, which can also be used to cache other things too. This adds an extra layer of flexibility to the build process. Pretty cool huh?
@@ -242,13 +242,12 @@ Now only new or changed images will be compressed. *Neat!*
 Before deploying, it's a good idea to clean out the destination folders and rebuild the files—just in case any have been removed from the source and are left hanging out in the destination folder:
 
 {% highlight js  %}
-gulp.task('clean', function() {
-  return gulp.src(['dist/assets/css', 'dist/assets/js', 'dist/assets/img'], {read: false})
-    .pipe(clean());
+gulp.task('clean', function(cb) {
+    del(['dist/assets/css', 'dist/assets/js', 'dist/assets/img'], cb)
 });
 {% endhighlight %}
 
-We can also pass an array of folders (or files) into `gulp.src`. As we don't need to read files that are being deleted, we can add `read: false` to the options to prevent gulp from reading the file contents—making it much quicker.
+We don't need to use a gulp plugin here as we can take advantage of Node modules directly within gulp. We use a callback (`cb`) to ensure the task finishes before exiting.
 
 
 ### The default task
@@ -294,12 +293,10 @@ Gulp can also take care of automatically refreshing the page on file change. We'
 gulp.task('watch', function() {
 
   // Create LiveReload server
-  var server = livereload();
+  livereload.listen();
 
   // Watch any files in dist/, reload on change
-  gulp.watch(['dist/**']).on('change', function(file) {
-    server.changed(file.path);
-  });
+  gulp.watch(['dist/**']).on('change', livereload.changed);
 
 });
 {% endhighlight %}
