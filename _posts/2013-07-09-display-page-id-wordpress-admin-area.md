@@ -47,5 +47,5 @@ add_action('admin_head',                 'custom_admin_styling');
 {% endhighlight %}
 
 Your Pages admin section should now look something like this:
-<span class="post-img">![WordPress Page ID](http://markgoodyear.com/img/posts/wordpress-page-id.png)</span>
+<p class="post-img  text--center">![WordPress Page ID](http://markgoodyear.com/images/posts/wordpress-page-id.png)</p>
 Now you can easily check the ID of any page. If anyone has any other (or better) methods, please let me know via the comments below or send me a <a href="http://twitter.com/markgdyr">Tweet</a>.
