@@ -105,7 +105,7 @@ We are going to install some plugins to achieve the following tasks:
 To install these plugins, run the following command:
 
 {% highlight bash %}
-$ npm install gulp-ruby-sass gulp-autoprefixer gulp-minify-css gulp-jshint gulp-concat gulp-uglify gulp-imagemin gulp-clean gulp-notify gulp-rename gulp-livereload gulp-cache --save-dev
+$ npm install gulp-ruby-sass gulp-autoprefixer gulp-minify-css gulp-jshint gulp-concat gulp-uglify gulp-imagemin gulp-notify gulp-rename gulp-livereload gulp-cache del --save-dev
 {% endhighlight %}
 
 This will install all necessary plugins and save them to `devDependencies` in `package.json`. A full list of gulp plugins can be [found here](http://gratimax.github.io/search-gulp-plugins/).
