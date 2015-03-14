@@ -1,5 +1,5 @@
 ---
-title: "Retinfy your Craft site with Retinafy plugin."
+title: "Retinfy your Craft site with Retinafy plugin"
 excerpt: "Retinafy is a small plugin for Craft. Its aim is to provide a simple way to generate the required images and markup for a retina screen."
 layout: post
 published: true
