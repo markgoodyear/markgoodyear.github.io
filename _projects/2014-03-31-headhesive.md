@@ -7,5 +7,3 @@ excerpt: "An on-demand sticky header."
 labs: /labs/headhesive/
 github: https://github.com/markgoodyear/headhesive.js
 ---
-
-This is the Headhesive project, init

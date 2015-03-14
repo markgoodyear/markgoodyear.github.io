@@ -7,5 +7,3 @@ excerpt: "Display a warning for IE users to let them know their browser isn’t 
 labs: /labs/browserblast/
 github: https://github.com/markgoodyear/browserblast
 ---
-
-This is the Headhesive project, init
