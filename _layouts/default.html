@@ -1,56 +1,39 @@
 <!DOCTYPE html>
 <html>
-  {% include head.html %}
+{% include head.html %}
 
-  <body>
+<body>
+  {% include header.html %}
 
-    {% include header.html %}
+  <main class="content">
+    <div class="container">
+      {{ content }}
+    </div>
+  </main>
 
-    <main class="content">
-      <div class="container">
-        {{ content }}
-      </div>
-    </main>
+  {% include footer.html %}
 
-    {% include footer.html %}
+  <script>
 
-    <script>
-      window.twttr = (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0],
-          t = window.twttr || {};
-        if (d.getElementById(id)) return t;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "https://platform.twitter.com/widgets.js";
-        fjs.parentNode.insertBefore(js, fjs);
 
-        t._e = [];
-        t.ready = function(f) {
-          t._e.push(f);
-        };
+    // GA
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-17303121-4']);
+    _gaq.push(['_setDomainName', 'markgoodyear.com']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
 
-        return t;
-      }(document, "script", "twitter-wjs"));
-
-      // GA
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-17303121-4']);
-      _gaq.push(['_setDomainName', 'markgoodyear.com']);
-      _gaq.push(['_trackPageview']);
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-
-      // External links in new window
-      (function externalLinks() {
-        for(var c = document.getElementsByTagName("a"), a = 0;a < c.length;a++) {
-          var b = c[a];
-          b.getAttribute("href") && b.hostname !== location.hostname && (b.target = "_blank")
-        }
-      })();
-
-    </script>
-  </body>
+    // External links in new window
+    (function externalLinks() {
+      for(var c = document.getElementsByTagName("a"), a = 0;a < c.length;a++) {
+        var b = c[a];
+        b.getAttribute("href") && b.hostname !== location.hostname && (b.target = "_blank")
+      }
+    })();
+  </script>
+</body>
 </html>

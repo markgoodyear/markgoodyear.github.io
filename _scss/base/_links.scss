@@ -3,7 +3,9 @@ a {
   &:visited {
     text-decoration: none;
     color: palette(primary);
-    transition: all .3s ease-in-out;
+    transition-property: border-bottom, background, color;
+    transition-duration: .3s;
+    transition-timing-function: ease-in-out;
   }
 }
 

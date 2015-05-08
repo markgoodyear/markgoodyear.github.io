@@ -7,20 +7,21 @@
       Creative director and front&hyphen;end developer <a href="http://bigbitecreative.com">@bigbitecreative</a>
     </div>
     <div class="profile__twitter">
-      <a href="https://twitter.com/markgdyr" class="twitter-follow-button" data-show-count="false" data-size="">Follow @markgdyr</a>
+      <a href="https://twitter.com/markgdyr" class="twitter-follow-button" data-show-count="false" data-dnt="true">Follow @markgdyr</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
     </div>
   </div>
 
   <nav class="nav">
     <ul class="list-bare">
       <li>
-        <a class="nav__link{% if page.active == "blog" or page.type == "post" %} nav__active{% endif %}" href="{{ '/blog/' | prepend: site.url }}">Blog</a>
+        <a class="nav__link{% if page.active == "blog" or page.type == "post" %} nav__active{% endif %}" href="{{ '/blog/' }}">Blog</a>
       <!-- </li> -->
       <li>
-        <a class="nav__link{% if page.active == "projects" %} nav__active{% endif %}" href="{{ '/projects/' | prepend: site.url }}">Projects</a>
+        <a class="nav__link{% if page.active == "projects" %} nav__active{% endif %}" href="{{ '/projects/' }}">Projects</a>
       <!-- </li> -->
       <li>
-        <a class="nav__link{% if page.active == "contact" %} nav__active{% endif %}" href="{{ '/contact/' | prepend: site.url }}">Contact</a>
+        <a class="nav__link{% if page.active == "contact" %} nav__active{% endif %}" href="{{ '/contact/' }}">Contact</a>
       <!-- </li> -->
     </ul>
   </nav>

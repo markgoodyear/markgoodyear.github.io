@@ -2,15 +2,21 @@
   Utils/Colours
 \*--------------------------------------------------*/
 
+// $color-base: #c95a5d,
+// $color-base: #3498db,
+// $color-base: #2980b9, // current
+
+$color-base: #2980B9;
+$color-base-dark: shade($color-base, 10%);
+$color-base-light: tint($color-base, 10%);
+
 $palettes: (
 
   // Primary
   primary: (
-    // base: #c95a5d,
-    // base: #3498db,
-    base: #2980b9,
-    dark: #2275AB,
-    light: #328CC7
+    base: $color-base,
+    dark: $color-base-dark,
+    light: $color-base-light
   ),
 
   // Secondary
@@ -26,7 +32,7 @@ $palettes: (
 
   // Grey
   grey: (
-    base: #525252,
+    base: #424242,
     xx-light: #f5f5f5,
     x-light: #eee,
     light: #ccc,
@@ -37,4 +43,3 @@ $palettes: (
     black: #000
   ),
 );
-

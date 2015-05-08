@@ -6,6 +6,7 @@ $border-box-sizing: false;
 
 // Bourbon + Neat
 @import 'vendor/bourbon/bourbon';
+@import 'utils/grid-settings';
 @import 'vendor/neat/neat';
 
 // Vendor
@@ -13,7 +14,6 @@ $border-box-sizing: false;
 
 // Utils
 @import 'utils/defaults';
-@import 'utils/grid-settings';
 @import 'utils/colours';
 @import 'utils/profiles';
 
@@ -50,6 +50,5 @@ $border-box-sizing: false;
 @import 'components/comments';
 
 // Helpers
-@import 'helpers/spacing';
+// @import 'helpers/spacing';
 @import 'helpers/type';
-@import 'helpers/widths';

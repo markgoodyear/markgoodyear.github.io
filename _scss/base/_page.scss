@@ -31,13 +31,24 @@ html {
   font: #{($base-font-size/16px)*1rem}/#{$line-height-ratio} $font-primary;
   color: palette(grey);
   background-color: #fafafa;
-  -webkit-font-smoothing: antialiased;
+  // -webkit-font-smoothing: antialiased;
 
   @include media($xlarge) {
     font-size: 1.2rem;
   }
+
+  .wf-active {
+    @include font-feature-settings("pnum", "liga");
+  }
 }
 
+body {
+  transition: opacity 175ms ease-out;
+
+  .wf-loading & {
+    opacity: 0;
+  }
+}
 
 /**
  * Container set up

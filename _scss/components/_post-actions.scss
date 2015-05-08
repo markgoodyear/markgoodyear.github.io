@@ -11,15 +11,8 @@
 
   a {
     display: block;
-    padding: rem(14) 0;
-    // border: 2px solid palette(primary);
-    // border-radius: 3px;
+    padding: rem(14px) 0;
     width: 100%;
     height: 100%;
-
-    &:hover {
-      // color: #fff;
-      // background: palette(primary);
-    }
   }
 }

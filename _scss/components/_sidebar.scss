@@ -9,12 +9,6 @@
   height: 100%;
   z-index: 100;
 
-  @include media($xlarge) {
-    // width: rem($sidebar-width--narrow);
-    // height: 60px;
-    // bottom: auto;
-  }
-
   @include media($large) {
     position: static;
     font-size: 1rem;
@@ -49,5 +43,12 @@
 
   &__detail {
     margin-bottom: rem($base-spacing-unit--half);
+  }
+
+  /**
+   * 1. Height of the twitter follow button. Preset to avoid page movement.
+   */
+  &__twitter {
+    height: 27px; /* 1 */
   }
 }
