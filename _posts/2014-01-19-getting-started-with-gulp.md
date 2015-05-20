@@ -11,6 +11,7 @@ date: 2014-01-19
     <li><em>Updated Jan 28th, 2014 to reflect the advancement of gulp</em></li>
     <li><em>Updated Apr 21st, 2014 to utilise updated `gulp-livereload`</em></li>
     <li><em>Updated Aug 11th, 2014 Using `del` instead of `gulp-clean`, updated `gulp-livereload`</em></li>
+    <li><em>Updated May 20th, 2015 Update `gulp-ruby-sass` syntax</em></li>
   </ul>
 </div>
 
@@ -143,9 +144,8 @@ Firstly, we will configure Sass compiling. We're going to compile Sass as expand
 
 {% highlight js  %}
 gulp.task('styles', function() {
-  return gulp.src('src/styles/main.scss')
-    .pipe(sass({ style: 'expanded' }))
-    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+  return sass('src/styles/main.scss', { style: 'expanded' })
+    .pipe(autoprefixer('last 2 version'))
     .pipe(gulp.dest('dist/assets/css'))
     .pipe(rename({suffix: '.min'}))
     .pipe(minifycss())
@@ -165,17 +165,17 @@ This is the `gulp.task` API which is used to create tasks. The above can run fro
 
 
 {% highlight js  %}
-return gulp.src('src/styles/main.scss')
+return sass('src/styles/main.scss', { style: 'expanded' })
 {% endhighlight %}
 
-This is the `gulp.src` API where we define the source file(s). It also can be a glob pattern, such as `/**/*.scss` to match multiple files. By returning the stream it makes it asynchronous, ensuring the task is fully complete before we get a notification to say it's finished.
+This is the new `gulp-ruby-sass` API where we define the source file(s) and pass in any options. For many other plugins, you would use the `gulp.src` API which we use later in this post (`return gulp.src(...)`). It also can be a glob pattern, such as `/**/*.scss` to match multiple files. By returning the stream it makes it asynchronous, ensuring the task is fully complete before we get a notification to say it's finished.
 
 
 {% highlight js  %}
-.pipe(sass({ style: 'expanded' }))
+.pipe(autoprefixer('last 2 version'))
 {% endhighlight %}
 
-We use `.pipe()` to pipe the source file(s) into a plugin. Usually the options for a plugin are found on their respective GitHub page. I've linked them above for convenience.
+We use `.pipe()` to pipe the source file(s) into a plugin. Usually the options for a plugin are found on their respective GitHub page. I've linked them above for convenience. Pipes are chainable so you can add as many plugins as you need to the stream.
 
 
 {% highlight js  %}
@@ -207,7 +207,7 @@ gulp.task('scripts', function() {
 });
 {% endhighlight %}
 
-One thing to note is that we need to specify a reporter for JSHint. I'm using the default reporter, which should be fine for most people. More on this can be found [on the JSHint website](http://www.jshint.com/docs/reporters/).
+Here we use the `gulp.src` API to specify our input files. One thing to note is that we need to specify a reporter for JSHint. I'm using the default reporter, which should be fine for most people. More on this can be found [on the JSHint website](http://www.jshint.com/docs/reporters/).
 
 
 ### Compress Images
