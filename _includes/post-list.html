@@ -11,6 +11,7 @@
 
     {% if include.collection == site.posts %}
       <span class="post-list__meta  post__meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+      {% if post.updated %}<small class="post__updated">Updated {{ post.updated | date: "%b %-d, %Y" }}</small>{% endif %}
     {% elsif include.collection == site.projects %}
       <span class="post-list__meta  post__meta">{{ post.excerpt }}</span>
     {% endif %}
