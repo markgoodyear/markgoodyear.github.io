@@ -22,6 +22,6 @@
   padding: 4px 8px;
   border-radius: 3px;
   // background: palette(grey, x-light);
-  background: tint(palette(secondary), 90%);
-  color: palette(secondary);
+  background-color: #fff6bf;
+  color: darken(#fff6bf, 60%);
 }
