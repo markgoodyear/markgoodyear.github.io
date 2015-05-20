@@ -13,6 +13,7 @@ active: blog
           <a class="post-list__link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
         </h2>
         <span class="post-list__meta  post__meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+        {% if post.updated %}<small class="post__updated">Updated {{ post.updated | date: "%b %-d, %Y" }}</small>{% endif %}
       </li>
     {% endfor %}
   </ul>

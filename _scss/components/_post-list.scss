@@ -14,3 +14,14 @@
 .post__meta {
   color: palette(grey, mid-dark);
 }
+
+.post__updated {
+  vertical-align: middle;
+  font-size: rem(12px);
+  margin-left: 5px;
+  padding: 4px 8px;
+  border-radius: 3px;
+  // background: palette(grey, x-light);
+  background: tint(palette(secondary), 90%);
+  color: palette(secondary);
+}

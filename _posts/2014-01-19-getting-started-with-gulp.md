@@ -4,6 +4,7 @@ excerpt: "Step aside Grunt, there's a new task runner in town. Gulp is an intuit
 layout: post
 published: true
 date: 2014-01-19
+updated: 2015-05-20
 ---
 
 <div class="callout  callout--info  callout--small">
