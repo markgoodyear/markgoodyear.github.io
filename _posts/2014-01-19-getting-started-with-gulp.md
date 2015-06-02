@@ -223,7 +223,7 @@ gulp.task('images', function() {
 });
 {% endhighlight %}
 
-This will take any source images and run them through the `imagemin` plugin. We can go a little further and utilise caching to save re-compressing already compressed images each time this task runs. All we need is the [gulp-cahce](https://github.com/jgable/gulp-cache) plugin—which we installed earlier. To set this up, we need to change this line:
+This will take any source images and run them through the `imagemin` plugin. We can go a little further and utilise caching to save re-compressing already compressed images each time this task runs. All we need is the [gulp-cache](https://github.com/jgable/gulp-cache) plugin—which we installed earlier. To set this up, we need to change this line:
 
 {% highlight js  %}
 .pipe(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true }))
