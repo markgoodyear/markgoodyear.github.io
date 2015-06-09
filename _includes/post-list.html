@@ -3,15 +3,27 @@
     <li class="post-list__item">
       <h2 class="post-list__title  gamma">
       {% if include.collection == site.posts %}
-        <a class="post-list__link" href="{{ post.url }}">{{ post.title }}</a>
+        {% if post.external %}
+          <a class="post-list__link" href="{{ post.external.url }}">{{ post.title }}</a>
+        {% else %}
+          <a class="post-list__link" href="{{ post.url }}">{{ post.title }}</a>
+        {% endif %}
       {% elsif include.collection == site.projects %}
         <a class="post-list__link" href="{{ post.labs }}">{{ post.title }}</a>
       {% endif %}
       </h2>
 
     {% if include.collection == site.posts %}
+      {% if post.external %}
+        <svg class="external-ico" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="14" height="14" viewBox="-473 275 16 16" enable-background="new -473 275 16 16" xml:space="preserve"><g id="external"><polygon id="box" fill="#ccc" points="-473,275 -467,275 -467,277 -471,277 -471,289 -459,289 -459,285 -457,285 -457,291 -473,291"/><polygon id="arrow" fill="#ccc" points="-464.6,275 -457,275 -457,282.6 -459.8,279.7 -464.1,284 -466,282.1 -461.7,277.8"/></g></svg>
+      {% endif %}
       <span class="post-list__meta  post__meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-      {% if post.updated %}<small class="post__updated">Updated {{ post.updated | date: "%b %-d, %Y" }}</small>{% endif %}
+      {% if post.updated %}
+        <small class="post__updated">Updated {{ post.updated | date: "%b %-d, %Y" }}</small>
+      {% endif %}
+      {% if post.external %}
+        <span class="post-list__meta  post__meta"> at {{ post.external.host }} </span>
+      {% endif %}
     {% elsif include.collection == site.projects %}
       <span class="post-list__meta  post__meta">{{ post.excerpt }}</span>
     {% endif %}
