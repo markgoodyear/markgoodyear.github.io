@@ -18,3 +18,10 @@
 .weight--light    { font-weight: 300 !important; }
 .weight--normal   { font-weight: 400 !important; }
 .weight--semibold { font-weight: 600 !important; }
+
+/**
+ * Misc.
+ */
+.dim {
+  color: palette(grey, mid-light);
+}

@@ -11,7 +11,7 @@ active: blog
       <li class="post-list__item">
         <h2 class="post-list__title  gamma">
           {% if post.external %}
-            <a class="post-list__link" href="{{ post.external.url }}">{{ post.title }}</a>
+            <a class="post-list__link external-link" href="{{ post.external.url }}">{{ post.title }}</a>
           {% else %}
             <a class="post-list__link" href="{{ post.url }}">{{ post.title }}</a>
           {% endif %}
