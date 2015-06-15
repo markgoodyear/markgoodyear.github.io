@@ -7,7 +7,7 @@ date: 2015-06-12
 ---
 
 
-<p class="lead">With Sass, I use a function to create simple vertical rhyhtm—generated from the base line-height—without the complexity of maintaining a baseline grid. With Post CSS, we can take this further and create a new unit.</p>
+<p class="lead">With Sass, I use a function to create simple vertical rhyhtm—generated from the base line-height—without the complexity of maintaining a baseline grid. With PostCSS, we can take this further and create a new unit.</p>
 
 ## Function-able Sass
 The Sass (SCSS) function I use is very simple. It essentially returns a multiple of the base line-height to help create vertical rhythm. The function looks a little like this:
