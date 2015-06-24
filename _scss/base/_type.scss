@@ -9,8 +9,7 @@
 
 h1, .alpha {
   @include font-size($h1-size, false);
-  // color: palette(primary);
-  // font-weight: 600;
+
   @include media($large) {
     @include font-size(42px, false);
   }
