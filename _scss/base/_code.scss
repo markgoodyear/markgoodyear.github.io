@@ -41,8 +41,23 @@ code,
   background-color: #f6f6f6;
 }
 
-.highlight { -webkit-font-smoothing: subpixel-antialiased; }
-.highlight pre { overflow: auto; }
+.highlight {
+  position: relative;
+  -webkit-font-smoothing: subpixel-antialiased;
+
+  // &:before {
+  //   content: "";
+  //   width: 100%;
+  //   background: #f6f6f6;
+  //   position: absolute;
+  //   height: 100%;
+  //   left: -100vw;
+  //   padding-right: 200vw;
+  //   z-index: 0;
+  // }
+}
+
+.highlight pre { overflow: auto; position: relative; }
 
 .highlight pre, pre, .highlight .hll {
   padding: $base-spacing-unit * 0.75;

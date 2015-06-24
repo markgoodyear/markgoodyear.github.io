@@ -4,10 +4,12 @@
 
 .section-title {
   @include font-size($h6-size);
+  display: inline-block;
   font-family: $font-primary;
   font-weight: 600;
   text-transform: uppercase;
-  border-bottom: 1px solid palette(grey, x-light);
+  border-bottom: 2px solid palette(grey, x-light);
+  margin-top: 0;
   margin-bottom: rem($base-spacing-unit);
-  color: palette(grey);
+  color: palette(grey, mid-light);
 }

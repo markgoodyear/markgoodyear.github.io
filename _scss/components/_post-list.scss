@@ -4,6 +4,12 @@
 
   &__item {
     margin-bottom: rem($base-spacing-unit);
+    padding-bottom: rem($base-spacing-unit);
+    border-bottom: 1px solid palette(grey, x-light);
+
+    &:last-of-type {
+      border-bottom: none;
+    }
   }
 
   &__title {
