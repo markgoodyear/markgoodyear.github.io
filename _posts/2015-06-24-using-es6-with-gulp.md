@@ -31,7 +31,7 @@ npm install gulp && npm install gulp -g
 To leverage ES6 you will need to install Babel as a dependancy to your project:
 
 {% highlight bash %}
-npm install babel --save-dev
+npm install babel-core --save-dev
 {% endhighlight %}
 
 Once this has finished, we need to instruct gulp to use Babel. To do this, we need to rename the `gulpfile.js` to `gulpfile.babel.js`:
@@ -69,6 +69,12 @@ gulp.task('styles', () => {
 {% endhighlight %}
 
 Here we have utilised ES6 [import/modules], [arrow functions], [template strings] and [constants]. If you'd like to check out more ES6 features, [es6-features.org] is a handy resource. 
+
+If you come across any errors running gulp, try installing `babel` instead of `babel-core`:
+
+{% highlight bash %}
+npm install babel --save-dev
+{% endhighlight %}
 
 [import/modules]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
 
