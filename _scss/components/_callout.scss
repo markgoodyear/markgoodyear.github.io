@@ -8,6 +8,15 @@
   padding: rem($base-spacing-unit);
   border-radius: 3px;
 
+  &__list {
+    margin: 0;
+    padding-left: 20px;
+
+    li:not(:last-of-type) {
+      padding-bottom: 5px;
+    }
+  }
+
   a {
     color: #fff;
   }
@@ -15,6 +24,15 @@
   &--info {
     background-color: #fff6bf;
     color: darken(#fff6bf, 60%);
+
+    a {
+      color: darken(#fff6bf, 60%);
+      border-bottom: 1px solid darken(#fff6bf, 45%) !important; // ugh i know
+
+      &:hover {
+        color: darken(#fff6bf, 80%);
+      }
+    }
   }
 
   &--center {
