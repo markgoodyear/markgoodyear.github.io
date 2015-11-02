@@ -4,7 +4,7 @@ excerpt: "Step aside Grunt, there's a new task runner in town. Gulp is an intuit
 layout: post
 published: true
 date: 2014-01-19
-updated: 2015-05-20
+updated: 2015-11-02
 ---
 
 <div class="callout  callout--info  callout--small">
@@ -13,6 +13,7 @@ updated: 2015-05-20
     <li><em>Updated Apr 21st, 2014 to utilise updated `gulp-livereload`</em></li>
     <li><em>Updated Aug 11th, 2014 Using `del` instead of `gulp-clean`, updated `gulp-livereload`</em></li>
     <li><em>Updated May 20th, 2015 Update `gulp-ruby-sass` syntax</em></li>
+    <li><em>Updated Nov 2nd, 2015 Update `del` syntax</em></li>
   </ul>
 </div>
 
@@ -242,12 +243,12 @@ Now only new or changed images will be compressed. *Neat!*
 Before deploying, it's a good idea to clean out the destination folders and rebuild the files—just in case any have been removed from the source and are left hanging out in the destination folder:
 
 {% highlight js  %}
-gulp.task('clean', function(cb) {
-    del(['dist/assets/css', 'dist/assets/js', 'dist/assets/img'], cb)
+gulp.task('clean', function() {
+    return del(['dist/assets/css', 'dist/assets/js', 'dist/assets/img']);
 });
 {% endhighlight %}
 
-We don't need to use a gulp plugin here as we can take advantage of Node modules directly within gulp. We use a callback (`cb`) to ensure the task finishes before exiting.
+We don't need to use a gulp plugin here as we can take advantage of Node modules directly within gulp. We use a return to ensure the task finishes before exiting.
 
 
 ### The default task
