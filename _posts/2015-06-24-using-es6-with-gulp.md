@@ -42,7 +42,7 @@ npm install gulp && npm install gulp -g
 {% endhighlight %}
 
 ### Creating an ES6 gulpfile
-To leverage ES6 you will need to install Babel (make sure you have Babel 6) as a dependancy to your project, along with the es2015 plugin preset:
+To leverage ES6 you will need to install Babel (make sure you have Babel 6) as a dependency to your project, along with the es2015 plugin preset:
 
 {% highlight bash %}
 npm install babel-core babel-preset-es2015 --save-dev
