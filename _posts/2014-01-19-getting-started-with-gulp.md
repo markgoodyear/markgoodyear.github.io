@@ -312,6 +312,6 @@ Here we have the full gulpfile, embedded from [this gist](https://gist.github.co
 
 {% gist markgoodyear/8497946 01-gulpfile.js %}
 
-I've also put together a Gruntfile that accomplishes the same tasks, so you have take a look for a comparison, in the [same gist](https://gist.github.com/markgoodyear/8497946#file-gruntfile-js).
+I've also put together a Gruntfile that accomplishes the same tasks, so you have take a look for a comparison, in the [same gist](https://gist.github.com/markgoodyear/8497946#file-02-gruntfile-js).
 
 If you have any questions or issues, please leave a comment below or you can find me on [Twitter](https://twitter.com/markgdyr).
