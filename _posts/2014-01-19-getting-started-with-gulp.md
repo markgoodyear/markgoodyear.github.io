@@ -310,7 +310,7 @@ To make this work, you'll need to install and enable the LiveReload browser plug
 
 Here we have the full gulpfile, embedded from [this gist](https://gist.github.com/markgoodyear/8497946#file-01-gulpfile-js):
 
-{% gist markgoodyear/8497946 gulpfile.js %}
+{% gist markgoodyear/8497946 01-gulpfile.js %}
 
 I've also put together a Gruntfile that accomplishes the same tasks, so you have take a look for a comparison, in the [same gist](https://gist.github.com/markgoodyear/8497946#file-gruntfile-js).
 
