@@ -308,7 +308,7 @@ To make this work, you'll need to install and enable the LiveReload browser plug
 
 ## Putting it all together
 
-Here we have the full gulpfile, embedded from [this gist](https://gist.github.com/markgoodyear/8497946#file-gulpfile-js):
+Here we have the full gulpfile, embedded from [this gist](https://gist.github.com/markgoodyear/8497946#file-01-gulpfile-js):
 
 {% gist markgoodyear/8497946 gulpfile.js %}
 
