@@ -4,7 +4,7 @@ excerpt: "Step aside Grunt, there's a new task runner in town. Gulp is an intuit
 layout: post
 published: true
 date: 2014-01-19
-updated: 2015-11-02
+updated: 2016-01-12
 ---
 
 <div class="callout  callout--info  callout--small">
@@ -14,6 +14,7 @@ updated: 2015-11-02
     <li><em>Updated Aug 11th, 2014 Using `del` instead of `gulp-clean`, updated `gulp-livereload`</em></li>
     <li><em>Updated May 20th, 2015 Update `gulp-ruby-sass` syntax</em></li>
     <li><em>Updated Nov 2nd, 2015 Update `del` syntax</em></li>
+    <li><em>Updated Jan 12th, 2016 `gulp-minify-css` depreciated. Use `gulp-cssnano`</em></li>
   </ul>
 </div>
 
@@ -94,7 +95,7 @@ We are going to install some plugins to achieve the following tasks:
 
 - Sass compile *([gulp-ruby-sass](https://github.com/sindresorhus/gulp-ruby-sass))*
 - Autoprefixer *([gulp-autoprefixer](https://github.com/Metrime/gulp-autoprefixer))*
-- Minify CSS *([gulp-minify-css](https://github.com/jonathanepollack/gulp-minify-css))*
+- Minify CSS *([gulp-cssnano](https://github.com/jonathanepollack/gulp-cssnano))*
 - JSHint *([gulp-jshint](https://github.com/wearefractal/gulp-jshint))*
 - Concatenation *([gulp-concat](https://github.com/wearefractal/gulp-concat))*
 - Uglify *([gulp-uglify](https://github.com/terinjokes/gulp-uglify))*
@@ -107,7 +108,7 @@ We are going to install some plugins to achieve the following tasks:
 To install these plugins, run the following command:
 
 {% highlight bash %}
-$ npm install gulp-ruby-sass gulp-autoprefixer gulp-minify-css gulp-jshint gulp-concat gulp-uglify gulp-imagemin gulp-notify gulp-rename gulp-livereload gulp-cache del --save-dev
+$ npm install gulp-ruby-sass gulp-autoprefixer gulp-cssnano gulp-jshint gulp-concat gulp-uglify gulp-imagemin gulp-notify gulp-rename gulp-livereload gulp-cache del --save-dev
 {% endhighlight %}
 
 This will install all necessary plugins and save them to `devDependencies` in `package.json`. A full list of gulp plugins can be [found here](http://gulpjs.com/plugins/).
@@ -121,7 +122,7 @@ Next, we need to create a `gulpfile.js` and load in the plugins:
 var gulp = require('gulp'),
     sass = require('gulp-ruby-sass'),
     autoprefixer = require('gulp-autoprefixer'),
-    minifycss = require('gulp-minify-css'),
+    cssnano = require('gulp-cssnano'),
     jshint = require('gulp-jshint'),
     uglify = require('gulp-uglify'),
     imagemin = require('gulp-imagemin'),
@@ -149,7 +150,7 @@ gulp.task('styles', function() {
     .pipe(autoprefixer('last 2 version'))
     .pipe(gulp.dest('dist/assets/css'))
     .pipe(rename({suffix: '.min'}))
-    .pipe(minifycss())
+    .pipe(cssnano())
     .pipe(gulp.dest('dist/assets/css'))
     .pipe(notify({ message: 'Styles task complete' }));
 });
